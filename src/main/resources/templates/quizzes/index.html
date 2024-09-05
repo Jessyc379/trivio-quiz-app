@@ -3,13 +3,24 @@
 
 <div th:replace="fragments/head :: head"></div>
 
+
+
 <body>
+<script src="/js/quiz.js"></script>
 
     <div th:replace="fragments/navigation :: nav"></div>
 
     <main class="d-flex flex-column align-items-center gap-3 p-5">
         <h1 th:text="${quiz.title}"></h1>
+        <div id="quizId" th:text="${quiz.quizId}"></div>
         <div>Total number of questions: <span th:text="${questionsTotal}"></span></div>
+
+
+        <button id="takeQuiz" type="button" class="btn btn-primary">Take Quiz</button>
+        <div id="question-container">
+
+
+        </div>
 
     </main>
 
