@@ -29,4 +29,27 @@ function getQuestion(quizId, questionNumber) {
         console.log(error)
     });
 
+
+    const answersContainer = document.getElementById("answers-container");
+    answersContainer.innerHTML = "";
+
+    const questionId = document.getElementById("questionId").textContent;
+
+    const answerUrl = `/answers/${questionId}`;
+
+    fetch(answerUrl).then(response => {
+        if (response.status === 200) {
+            return response.text();
+        }
+        throw new Error(response);
+    }).then(data => {
+        answersContainer.innerHTML = data;
+    }).catch(error => {
+        console.log(error)
+    });
+
+    // const answers = document.getElementsByName("answersRadio");
+
+
 }
+
