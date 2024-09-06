@@ -8,10 +8,13 @@
 <div th:replace="fragments/navigation :: nav"></div>
 
 <div class="container mt-4">
-    <div class="card mb-2" th:each="quiz:${quizzes}">
-        <a th:href="@{|/quizzes/${quiz.quizId}|}" class="card-header" th:text="${quiz.title}"></a>
+    <div class="card mb-2 d-flex justify-content-between" th:each="quiz:${quizzes}">
+        <div class="card-header" th:text="${quiz.title}"></div>
+        <a th:href="@{|/quizzes/${quiz.quizId}/edit|}" class="btn btn-outline-primary">Edit</a>
     </div>
 </div>
 
 </body>
 </html>
+
+

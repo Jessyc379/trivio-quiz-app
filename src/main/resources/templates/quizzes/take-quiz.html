@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/head :: head"></div>
+
+
+
+<body>
+    <script src="/js/quiz.js"></script>
+
+
+    <div th:replace="fragments/navigation :: nav"></div>
+
+    <main class="d-flex flex-column align-items-center gap-3 p-5">
+
+        <h1 th:text="${quiz.title}"></h1>
+        <div id="quiz-id" th:text="${quiz.quizId}" class="d-none"></div>
+
+        <div>Total number of questions: <span id="total" th:text="${questionsTotal}"></span></div>
+
+        <button id="take-quiz-btn" type="button" class="btn btn-outline-primary">Take Quiz</button>
+
+        <div id="question-container" class="d-none m-5">
+            <div id="question-text"></div>
+            <form id="answers-form">
+                <div id="answers-list" class="mb-3"></div>
+                <input id="submit-btn" class="btn btn-outline-primary" type="submit" value="Submit answer">
+            </form>
+            <div id="result"></div>
+            <button id="next-question-btn" type="button" class="d-none">Next</button>
+        </div>
+        <div id="results-container" class="d-none m-5">
+            <p>You have completed the quiz!</p>
+            <button id="show-results-btn" class="btn btn-outline-primary" type="button">Show Results</button>
+            <div id="quiz-results" class="d-none">
+                <p>Your Score: <span id="score"></span></p>
+                <p>Your Percent: <span id="percent" class="fs-4"></span></p>
+            </div>
+        </div>
+
+
+    </main>
+
+</body>
+
+</html>

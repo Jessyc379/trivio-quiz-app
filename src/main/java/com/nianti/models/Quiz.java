@@ -41,12 +41,12 @@ public class Quiz
         this.title = title;
     }
 
-    public boolean isLive()
+    public boolean getIsLive()
     {
         return isLive;
     }
 
-    public void setLive(boolean live)
+    public void setIsLive(boolean live)
     {
         isLive = live;
     }

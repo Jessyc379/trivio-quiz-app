@@ -54,6 +54,26 @@ public class QuizDao {
         return null;
     }
 
+
+    public void updateQuiz(Quiz quiz) {
+
+        String sql = """
+                UPDATE quiz
+                SET quiz_title = ?
+                    , is_live = ?
+                WHERE quiz_id = ?;
+                """;
+
+        jdbcTemplate.update(sql,
+                quiz.getTitle(),
+                quiz.getIsLive(),
+                quiz.getQuizId()
+
+        );
+
+    }
+
+
     private Quiz mapRowToQuiz(SqlRowSet row) {
         int id = row.getInt("quiz_id");
         String title = row.getString("quiz_title");
