@@ -1,49 +1,53 @@
-document.addEventListener("DOMContentLoaded", () => {
-    quizId = document.getElementById("quiz-id").textContent;
-    resultDiv = document.getElementById("result");
-    nextBtn = document.getElementById("next-question-btn");
-    submitBtn = document.getElementById("submit-btn");
-    total = +document.getElementById("total").textContent;
-
-
-
-
-    const takeQuizBtn = document.getElementById("take-quiz-btn");
-    const answersForm = document.getElementById("answers-form");
-
-    takeQuizBtn.addEventListener("click", getQuestion);
-    // TODO: disable this button until the quiz ends
-
-    nextBtn.addEventListener("click", getQuestion);
-
-    answersForm.addEventListener('submit', (event) => handleSubmitAnswer(event));
-
-
-});
-
 let quizId;
+let total;
+let takeQuizBtn;
 let correctAnswer;
 let userQuizScore = 0;
 let currentQuestionNumber = 0;
 let resultDiv;
 let nextBtn;
 let submitBtn;
-let total;
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    quizId = document.getElementById("quiz-id").textContent;
+    total = +document.getElementById("total").textContent;
+
+    takeQuizBtn = document.getElementById("take-quiz-btn");
+    nextBtn = document.getElementById("next-question-btn");
+    submitBtn = document.getElementById("submit-btn");
+
+    resultDiv = document.getElementById("result");
+
+    const answersForm = document.getElementById("answers-form");
+
+    takeQuizBtn.addEventListener("click", getQuestion);
+    nextBtn.addEventListener("click", getQuestion);
+    answersForm.addEventListener('submit', (event) => handleSubmitAnswer(event));
+
+});
 
 
 function getQuestion() {
 
+    if (currentQuestionNumber == 0) {
+        takeQuizBtn.disabled = true;
+        const container = document.getElementById("question-container");
+        container.classList.remove("d-none");
+        container.classList.add("d-flex", "flex-column", "align-items-center", "gap-3");
+    }
+
     currentQuestionNumber++;
-    
-    const container = document.getElementById("question-container");
-    container.classList.remove("d-none");
-    container.classList.add("d-flex", "flex-column", "align-items-center", "gap-3");
+
     const questionText = document.getElementById("question-text");
     const answersContainer = document.getElementById("answers-list");
     answersContainer.innerHTML = "";
+
     resultDiv.classList.add("d-none");
     resultDiv.classList.remove("text-danger");
     resultDiv.classList.remove("text-success");
+
     nextBtn.classList.add("d-none");
     submitBtn.classList.remove("d-none");
 
@@ -96,9 +100,11 @@ function createAnswerDiv(answer, parent) {
 function handleSubmitAnswer(event) {
     event.preventDefault();
     const checkedAnswer = getCheckedAnswerValue();
+
     console.log(`User selected: ${checkedAnswer}`);
     resultDiv.classList.remove("d-none");
     submitBtn.classList.add("d-none");
+    disableAnswers();
     if (checkedAnswer === correctAnswer) {
         userQuizScore++;
         resultDiv.textContent = "Correct!";
@@ -107,12 +113,12 @@ function handleSubmitAnswer(event) {
         resultDiv.textContent = "WRONG :(";
         resultDiv.classList.add("text-danger");
     }
-    
-    // TODO: check if the quiz has next question
 
-     if(currentQuestionNumber + 1 <= total){
-    nextBtn.classList.remove("d-none");
-    nextBtn.classList.add("btn", "btn-outline-primary");
+    if (currentQuestionNumber + 1 <= total) {
+        nextBtn.classList.remove("d-none");
+        nextBtn.classList.add("btn", "btn-outline-primary");
+    } else {
+        // show results here
     }
 };
 
@@ -124,4 +130,11 @@ function getCheckedAnswerValue() {
     } else {
         return null;
     }
+};
+
+function disableAnswers() {
+    const answersRadioGroup = document.querySelectorAll('input[name="answerRadio"]');
+    answersRadioGroup.forEach(radio => {
+        radio.disabled = true;
+    });
 };
