@@ -25,7 +25,7 @@ public class QuizController {
 
     @GetMapping("/quizzes")
     public String allActiveQuizzes(Model model) {
-        var quizzes = quizDao.getAllQuizzes();
+        var quizzes = quizDao.getAllQuizzes().stream().filter(Quiz::getIsLive).toList();
 
         model.addAttribute("title", "All Quizzes");
         model.addAttribute("quizzes", quizzes);
