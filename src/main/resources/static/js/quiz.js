@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const answersForm = document.getElementById("answers-form");
     
 
-    takeQuizBtn.addEventListener("click", () => getQuestion(quizId, currentQuestionNumber));
+    takeQuizBtn.addEventListener("click", getQuestion);
     // TODO: disable this button until the quiz ends
 
     answersForm.addEventListener('submit', (event) => handleSubmitAnswer(event));
@@ -17,13 +17,15 @@ document.addEventListener("DOMContentLoaded", () => {
 let quizId;
 let correctAnswer;
 let userQuizScore = 0;
-let currentQuestionNumber = 1;
+let currentQuestionNumber = 0;
 let resultDiv;
 let nextBtn;
 
 
-function getQuestion(quizId, questionNumber) {
+function getQuestion() {
 
+    currentQuestionNumber++;
+    
     const container = document.getElementById("question-container");
     container.classList.remove("d-none");
     container.classList.add("d-flex", "flex-column", "align-items-center", "gap-3");
@@ -35,7 +37,7 @@ function getQuestion(quizId, questionNumber) {
     resultDiv.classList.remove("text-success");
     nextBtn.classList.add("d-none");
 
-    const questionUrl = `/api/quizzes/${quizId}/question/${questionNumber}`;
+    const questionUrl = `/api/quizzes/${quizId}/question/${currentQuestionNumber}`;
 
     fetch(questionUrl).then(response => {
         if (response.status === 200) {
@@ -95,15 +97,11 @@ function handleSubmitAnswer(event) {
         resultDiv.classList.add("text-danger");
     }
     
-    // TODO: check if the quiz haz next question
+    // TODO: check if the quiz has next question
     // if currentQuestionNumber + 1 <= totalQuestionsNumber
     nextBtn.classList.remove("d-none");
     nextBtn.classList.add("btn", "btn-outline-primary");
-    nextBtn.addEventListener("click", () => {
-        currentQuestionNumber++;
-        getQuestion(quizId, currentQuestionNumber);
-    })
-
+    nextBtn.addEventListener("click", getQuestion);
 };
 
 
