@@ -118,7 +118,7 @@ function handleSubmitAnswer(event) {
         nextBtn.classList.remove("d-none");
         nextBtn.classList.add("btn", "btn-outline-primary");
     } else {
-        // show results here
+        showResults();
     }
 };
 
@@ -138,3 +138,45 @@ function disableAnswers() {
         radio.disabled = true;
     });
 };
+
+function showResults() {
+    const resultsDiv = document.getElementById("results-container");
+    resultsDiv.classList.remove("d-none");
+    resultsDiv.classList.add("d-flex", "flex-column", "align-items-center");
+
+    const resultsBtn = document.getElementById("show-results-btn");
+
+    resultsBtn.addEventListener("click", displayResults);
+
+}
+
+function displayResults() {
+    const resultsBtn = document.getElementById("show-results-btn");
+    resultsBtn.classList.add("d-none");
+
+    const results = document.getElementById("quiz-results");
+    const percent = Math.round((userQuizScore / total * 10000) / 100);
+
+    const scoreSpan = document.getElementById("score");
+    scoreSpan.textContent = userQuizScore;
+
+    const percentSpan = document.getElementById("percent");
+    percentSpan.textContent = `${percent}%`;
+
+    if (percent >= 80) {
+        percentSpan.classList.add("text-success")
+    }
+    else if (percent >= 60) {
+        percentSpan.classList.add("text-warning")
+    }
+    else {
+        percentSpan.classList.add("text-danger")
+    }
+    results.classList.remove("d-none");
+    results.classList.add("d-flex", "flex-column", "align-items-center");
+
+
+
+}
+
+
