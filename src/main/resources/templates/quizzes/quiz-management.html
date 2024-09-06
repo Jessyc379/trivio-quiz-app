@@ -5,16 +5,18 @@
 
 <body>
 
-<div th:replace="fragments/navigation :: nav"></div>
+    <div th:replace="fragments/navigation :: nav"></div>
 
-<div class="container mt-4">
-    <div class="card mb-2 d-flex justify-content-between" th:each="quiz:${quizzes}">
-        <div class="card-header" th:text="${quiz.title}"></div>
-        <a th:href="@{|/quizzes/${quiz.quizId}/edit|}" class="btn btn-outline-primary">Edit</a>
+    <div class="container mt-4">
+        <div class="card mb-2 d-flex flex-row justify-content-between align-items-center p-2" th:each="quiz:${quizzes}">
+            <div class="quiz-title w-75" th:text="${quiz.title}"></div>
+            <div th:class="${quiz.isLive ? 'text-success' : 'text-secondary'}"
+                th:text="${quiz.isLive ? 'Active' : 'Inactive'}">
+            </div>
+            <a th:href="@{|/quizzes/${quiz.quizId}/edit|}" class="btn btn-outline-primary">Edit</a>
+        </div>
     </div>
-</div>
 
 </body>
+
 </html>
-
-

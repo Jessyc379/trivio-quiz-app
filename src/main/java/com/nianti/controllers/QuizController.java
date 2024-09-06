@@ -24,8 +24,7 @@ public class QuizController {
 
 
     @GetMapping("/quizzes")
-    public String allActiveQuizzes(Model model)
-    {
+    public String allActiveQuizzes(Model model) {
         var quizzes = quizDao.getAllQuizzes();
 
         model.addAttribute("title", "All Quizzes");
@@ -33,9 +32,9 @@ public class QuizController {
 
         return "/quizzes/index";
     }
+
     @GetMapping("/quizzes/manage")
-    public String allQuizzes(Model model)
-    {
+    public String allQuizzes(Model model) {
         var quizzes = quizDao.getAllQuizzes();
 
         model.addAttribute("title", "Manage Quizzes");
@@ -47,11 +46,11 @@ public class QuizController {
     @GetMapping("/quizzes/{quizId}")
     public String quizPage(Model model, @PathVariable int quizId) {
         Quiz quiz = quizDao.getQuizById(quizId);
-        model.addAttribute("quiz",quiz);
+        model.addAttribute("quiz", quiz);
 
         // get number of questions
         int questionsTotal = questionDao.getTotalNumberOfQuestionsByQuizId(quizId);
-        model.addAttribute("questionsTotal",questionsTotal);
+        model.addAttribute("questionsTotal", questionsTotal);
 
         return "/quizzes/take-quiz";
     }
@@ -68,22 +67,12 @@ public class QuizController {
 
 
     @PostMapping("/quizzes/{quizId}/edit")
-    public String editQuiz(@ModelAttribute("quiz") Quiz quiz, @PathVariable int quizId){
+    public String editQuiz(@ModelAttribute("quiz") Quiz quiz, @PathVariable int quizId) {
 
         quiz.setQuizId(quizId);
         quizDao.updateQuiz(quiz);
 
         return "redirect:/quizzes/manage";
     }
-
-
-
-    @GetMapping("/test")
-    public String editQuiz2(@RequestParam String title, @RequestParam(required = false) Boolean isLive){
-
-
-        return "/quizzes/edit-quiz";
-    }
-
 
 }
