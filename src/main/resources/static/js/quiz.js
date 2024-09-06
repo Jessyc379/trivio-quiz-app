@@ -1,10 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const quizId = document.getElementById("quiz-id").textContent;
-    const takeQuizBtn = document.getElementById("take-quiz-btn");
+    quizId = document.getElementById("quiz-id").textContent;
+    resultDiv = document.getElementById("result");
+    nextBtn = document.getElementById("next-question-btn");
 
-    takeQuizBtn.addEventListener("click", () => getQuestion(quizId, 1));
+
+    const takeQuizBtn = document.getElementById("take-quiz-btn");
+    const answersForm = document.getElementById("answers-form");
+    
+
+    takeQuizBtn.addEventListener("click", () => getQuestion(quizId, currentQuestionNumber));
     // TODO: disable this button until the quiz ends
+
+    answersForm.addEventListener('submit', (event) => handleSubmitAnswer(event));
 });
+
+let quizId;
+let correctAnswer;
+let userQuizScore = 0;
+let currentQuestionNumber = 1;
+let resultDiv;
+let nextBtn;
 
 
 function getQuestion(quizId, questionNumber) {
@@ -13,8 +28,12 @@ function getQuestion(quizId, questionNumber) {
     container.classList.remove("d-none");
     container.classList.add("d-flex", "flex-column", "align-items-center", "gap-3");
     const questionText = document.getElementById("question-text");
-    const answersForm = document.getElementById("answers-form");
     const answersContainer = document.getElementById("answers-list");
+    answersContainer.innerHTML = "";
+    resultDiv.classList.add("d-none");
+    resultDiv.classList.remove("text-danger");
+    resultDiv.classList.remove("text-success");
+    nextBtn.classList.add("d-none");
 
     const questionUrl = `/api/quizzes/${quizId}/question/${questionNumber}`;
 
@@ -29,6 +48,8 @@ function getQuestion(quizId, questionNumber) {
         const answersList = data.answers;
         console.log(answersList)
         answersList.forEach(answer => createAnswerDiv(answer, answersContainer));
+        correctAnswer = answersList.filter(answer => answer.correct === true)[0].answerText;
+        console.log(`correctAnswer: ${correctAnswer}`);
 
     }).catch(error => {
         console.log(error)
@@ -42,8 +63,8 @@ function createAnswerDiv(answer, parent) {
     // Create the input element
     const input = document.createElement('input');
     input.type = 'radio';
-    input.name = 'answerRadio'; 
-    input.id = `answer${answer.answerId}`; 
+    input.name = 'answerRadio';
+    input.id = `answer${answer.answerId}`;
     input.value = answer.answerText;
     input.classList.add("form-check-input");
 
@@ -60,3 +81,37 @@ function createAnswerDiv(answer, parent) {
     parent.appendChild(formRow);
 };
 
+function handleSubmitAnswer(event) {
+    event.preventDefault();
+    const checkedAnswer = getCheckedAnswerValue();
+    console.log(`User selected: ${checkedAnswer}`);
+    resultDiv.classList.remove("d-none");
+    if (checkedAnswer === correctAnswer) {
+        userQuizScore++;
+        resultDiv.textContent = "Correct!";
+        resultDiv.classList.add("text-success");
+    } else {
+        resultDiv.textContent = "WRONG :(";
+        resultDiv.classList.add("text-danger");
+    }
+    
+    // TODO: check if the quiz haz next question
+    // if currentQuestionNumber + 1 <= totalQuestionsNumber
+    nextBtn.classList.remove("d-none");
+    nextBtn.classList.add("btn", "btn-outline-primary");
+    nextBtn.addEventListener("click", () => {
+        currentQuestionNumber++;
+        getQuestion(quizId, currentQuestionNumber);
+    })
+
+};
+
+
+function getCheckedAnswerValue() {
+    const checkedAnswers = document.querySelectorAll(`input[name="answerRadio"]:checked`);
+    if (checkedAnswers.length > 0) {
+        return checkedAnswers[0].value;
+    } else {
+        return null;
+    }
+};
