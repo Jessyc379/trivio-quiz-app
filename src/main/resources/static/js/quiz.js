@@ -2,14 +2,19 @@ document.addEventListener("DOMContentLoaded", () => {
     quizId = document.getElementById("quiz-id").textContent;
     resultDiv = document.getElementById("result");
     nextBtn = document.getElementById("next-question-btn");
+    submitBtn = document.getElementById("submit-btn");
+    total = +document.getElementById("total").textContent;
+
+
 
 
     const takeQuizBtn = document.getElementById("take-quiz-btn");
     const answersForm = document.getElementById("answers-form");
-    
 
     takeQuizBtn.addEventListener("click", getQuestion);
     // TODO: disable this button until the quiz ends
+
+    nextBtn.addEventListener("click", getQuestion);
 
     answersForm.addEventListener('submit', (event) => handleSubmitAnswer(event));
 
@@ -22,6 +27,8 @@ let userQuizScore = 0;
 let currentQuestionNumber = 0;
 let resultDiv;
 let nextBtn;
+let submitBtn;
+let total;
 
 
 function getQuestion() {
@@ -38,6 +45,7 @@ function getQuestion() {
     resultDiv.classList.remove("text-danger");
     resultDiv.classList.remove("text-success");
     nextBtn.classList.add("d-none");
+    submitBtn.classList.remove("d-none");
 
     const questionUrl = `/api/quizzes/${quizId}/question/${currentQuestionNumber}`;
 
@@ -90,6 +98,7 @@ function handleSubmitAnswer(event) {
     const checkedAnswer = getCheckedAnswerValue();
     console.log(`User selected: ${checkedAnswer}`);
     resultDiv.classList.remove("d-none");
+    submitBtn.classList.add("d-none");
     if (checkedAnswer === correctAnswer) {
         userQuizScore++;
         resultDiv.textContent = "Correct!";
@@ -100,10 +109,11 @@ function handleSubmitAnswer(event) {
     }
     
     // TODO: check if the quiz has next question
-    // if currentQuestionNumber + 1 <= totalQuestionsNumber
+
+     if(currentQuestionNumber + 1 <= total){
     nextBtn.classList.remove("d-none");
     nextBtn.classList.add("btn", "btn-outline-primary");
-    nextBtn.addEventListener("click", getQuestion);
+    }
 };
 
 

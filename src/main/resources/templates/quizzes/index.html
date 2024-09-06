@@ -16,7 +16,7 @@
         <h1 th:text="${quiz.title}"></h1>
         <div id="quiz-id" th:text="${quiz.quizId}" class="d-none"></div>
 
-        <div>Total number of questions: <span th:text="${questionsTotal}"></span></div>
+        <div>Total number of questions: <span id="total" th:text="${questionsTotal}"></span></div>
 
         <button id="take-quiz-btn" type="button" class="btn btn-outline-primary">Take Quiz</button>
 
@@ -24,7 +24,7 @@
             <div id="question-text"></div>
             <form id="answers-form">
                 <div id="answers-list" class="mb-3"></div>
-                <input class="btn btn-outline-primary" type="submit" value="Submit answer">
+                <input id="submit-btn" class="btn btn-outline-primary" type="submit" value="Submit answer">
             </form>
             <div id="result"></div>
             <button id="next-question-btn" type="button" class="d-none">Next</button>
