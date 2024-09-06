@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     resultDiv = document.getElementById("result");
     nextBtn = document.getElementById("next-question-btn");
 
+<<<<<<< Updated upstream
 
     const takeQuizBtn = document.getElementById("take-quiz-btn");
     const answersForm = document.getElementById("answers-form");
@@ -12,6 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // TODO: disable this button until the quiz ends
 
     answersForm.addEventListener('submit', (event) => handleSubmitAnswer(event));
+=======
+    takeQuizBtn.addEventListener("click", () => getQuestion(quizId, 1));
+//     TODO: disable this button until the quiz ends
+>>>>>>> Stashed changes
 });
 
 let quizId;
