@@ -25,10 +25,7 @@ public class QuestionController {
         Question question = questionDao.getQuestion(quizId, questionNumber);
         model.addAttribute("question", question);
 
-        return "/quizzes/fragements/quiz-question";
-
-
+        return "/quizzes/fragments/quiz-question";
     }
-
 
 }

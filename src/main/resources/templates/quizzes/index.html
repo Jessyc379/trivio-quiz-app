@@ -6,26 +6,26 @@
 
 
 <body>
-<script src="/js/quiz.js"></script>
+    <script src="/js/quiz.js"></script>
 
 
     <div th:replace="fragments/navigation :: nav"></div>
 
     <main class="d-flex flex-column align-items-center gap-3 p-5">
+
         <h1 th:text="${quiz.title}"></h1>
-        <div id="quizId" th:text="${quiz.quizId}"></div>
+        <div id="quiz-id" th:text="${quiz.quizId}" class="d-none"></div>
+
         <div>Total number of questions: <span th:text="${questionsTotal}"></span></div>
 
+        <button id="take-quiz-btn" type="button" class="btn btn-outline-primary">Take Quiz</button>
 
-        <button id="takeQuiz" type="button" class="btn btn-primary">Take Quiz</button>
         <div id="question-container">
-            <div id="questionId" th:text="${question.questionId}"></div>
-<!--index.html needs to be changed if this info is here-->
-
-
+            <div id="question-text"></div>
+            <form id="answers-form">
+                <input class="btn btn-outline-primary" type="submit" value="Submit answer">
+            </form>
         </div>
-        <div id="answers-container"></div>
-
 
     </main>
 
