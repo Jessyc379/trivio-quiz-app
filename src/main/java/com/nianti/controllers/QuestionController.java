@@ -40,37 +40,36 @@ public class QuestionController {
         return "/questions/questions";
     }
 
-//
-//    //added 9.6PM
-//    @GetMapping("/quizzes/{quizId}/edit")
-//    public String editQuestion(Model model, @PathVariable int quizId, @PathVariable int questionId){
-//
-//        Question question = questionDao.getQuestion(quizId, questionId);
-//
-//
-//
-//        model.addAttribute("question", question);
-//        model.addAttribute("action" ,"edit");
-//
-//        return "/quizzes/add-edit-quiz";
-//        //not sure if we can do this on same page without seperation
-//
-//    }
-//
-//    //added 9.6PM
-//    @PostMapping("/quizzes/{quizId}/edit")
-//    public String editQuestion(Model model, @Valid @ModelAttribute("question")
-//    Question question, @PathVariable int questionId, BindingResult result){
-//        if(result.hasErrors()){
-//            model.addAttribute("isInvalid", true);
-//            return "quizzes/add-edit-quiz";
-//        }
-//        question.setQuestionId(questionId);
-//        questionDao.updateQuestion(question);
-//
-//        return "redirect:/quizzes/manage";
-////        @PathVariable int quizId
-//    }
+
+    @GetMapping("/questions/{quizId}/{questionId}/edit")
+    public String editQuestion(Model model, @PathVariable int quizId, @PathVariable int questionId){
+
+    Question question = questionDao.getQuestionByQuestionId(questionId);
+
+
+
+        model.addAttribute("question", question);
+        model.addAttribute("action" ,"edit");
+
+
+        return "/questions/add-edit";
+
+    }
+
+    @PostMapping("/questions/{quizId}/{questionId}/edit")
+    public String editQuestion(Model model, @Valid @ModelAttribute("question") Question question, BindingResult result, @PathVariable int quizId, @PathVariable int questionId) {
+        if(result.hasErrors()){
+            model.addAttribute("isInvalid", true);
+            return "/questions/add-edit";
+        }
+        question.setQuestionId(questionId);
+        question.setQuizId(quizId);
+        questionDao.updateQuestion(question);
+
+
+        return "redirect:/questions?quizId=" + question.getQuizId();
+
+    }
 //
 //    @GetMapping("/quizzes/{quizId}/edit")
 //    public String addQuestion(Model model){

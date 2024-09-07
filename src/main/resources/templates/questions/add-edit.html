@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/head :: head"></div>
+
+<body>
+    <script src="/js/validate-quiz.js"></script>
+
+    <div th:replace="fragments/navigation :: nav"></div>
+
+    <main class="d-flex flex-column align-items-center gap-3 p-5">
+
+        <h1 th:if="${action} =='add'">Create New Question</h1>
+        <h1 th:if="${action} =='edit'">Edit Question</h1>
+
+        <form id="edit-question" method="post" th:object="${question}" novalidate
+            th:class="${isInvalid} ? 'was-validated' : ''">
+            <div class="form-floating mb-3 w-100">
+                <input class="form-control" type="text" th:field="*{questionText}" placeholder="Question Text" required>
+                <div class="invalid-feedback">Enter the question text</div>
+                <label th:for="*{questionText}">Question Text</label>
+            </div>
+            <div class="form-floating mb-3 w-100">
+                <input class="form-control" type="text" th:field="*{questionNumber}" placeholder="Question Number" required>
+                <div class="invalid-feedback">Enter the question number</div>
+                <label th:for="*{questionNumber}">Question Number</label>
+            </div>
+
+            <input id="submit-btn" class="btn btn-outline-primary" type="submit" value="Save Question">
+        </form>
+
+    </main>
+</body>
+
+</html>

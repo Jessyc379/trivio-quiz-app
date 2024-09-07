@@ -36,6 +36,24 @@ public class QuestionDao {
 
         return questions;
     }
+    public Question getQuestionByQuestionId(int questionId) {
+        ArrayList<Question> questions = new ArrayList<>();
+        String sql = """
+                    SELECT *
+                    FROM question
+                    WHERE question_id = ?;
+                """;
+
+        var row = jdbcTemplate.queryForRowSet(sql, questionId);
+
+        if (row.next()) {
+            return mapRowToQuestion(row);
+        }
+
+        return null;
+    }
+
+
 
 
     public int getTotalNumberOfQuestionsByQuizId(int quizId) {
@@ -75,15 +93,13 @@ public class QuestionDao {
 
         String sql = """
                 UPDATE question
-                SET quiz_id = ?
-                    , question_number = ?
+                SET question_number = ?
                     , question_text = ?
                 WHERE question_id = ?;
                 """;
 
         jdbcTemplate.update(sql,
-                question.getQuizId()
-                , question.getQuestionNumber()
+                question.getQuestionNumber()
                 , question.getQuestionText()
                 , question.getQuestionId());
 
