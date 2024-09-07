@@ -55,6 +55,23 @@ public class QuestionDao {
         }
         return null;
     }
+    public void updateQuestion(Question question) {
+
+        String sql = """
+                UPDATE question
+                SET quiz_id = ?
+                    , question_number = ?
+                    , question_text = ?
+                WHERE question_id = ?;
+                """;
+
+        jdbcTemplate.update(sql,
+                question.getQuizId()
+                , question.getQuestionNumber()
+                , question.getQuestionText()
+                , question.getQuestionId());
+
+    }
 
 
     private Question mapRowToQuestion(SqlRowSet row) {
