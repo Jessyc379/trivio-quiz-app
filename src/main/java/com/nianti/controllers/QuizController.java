@@ -69,10 +69,11 @@ public class QuizController {
 
 
     @PostMapping("/quizzes/{quizId}/edit")
-    public String editQuiz(Model model, @Valid @ModelAttribute("quiz") Quiz quiz, @PathVariable int quizId, BindingResult result) {
+    public String editQuiz(Model model, @Valid @ModelAttribute("quiz") Quiz quiz, BindingResult result, @PathVariable int quizId) {
         if (result.hasErrors()) {
             model.addAttribute("isInvalid", true);
-            return "quizzes/edit-quiz";
+            model.addAttribute("action", "edit");
+            return "quizzes/add-edit-quiz";
         }
         quiz.setQuizId(quizId);
         quizDao.updateQuiz(quiz);
@@ -93,8 +94,9 @@ public class QuizController {
         if(result.hasErrors())
         {
             model.addAttribute("isInvalid", true);
+            model.addAttribute("action", "add");
 
-            return "quizzes/add-edit";
+            return "quizzes/add-edit-quiz";
         }
         quizDao.addQuiz(quiz);
         return "redirect:/quizzes/manage";
