@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,10 +31,16 @@ public class QuestionController {
 
     @Autowired
     private AnswerDao answerDao;
-//
-//    @GetMapping("/questions")
-//    public String getQuestionsById()
-//
+
+    @GetMapping("/questions/{quizId}")
+    public String getQuestionsById(Model model, @PathVariable int quizId){
+        List<Question> questions = questionDao.getQuestionByQuizId(quizId);
+
+        model.addAttribute("questions", questions);
+
+        return "questions/questions";
+    }
+
 //
 //    //added 9.6PM
 //    @GetMapping("/quizzes/{quizId}/edit")
