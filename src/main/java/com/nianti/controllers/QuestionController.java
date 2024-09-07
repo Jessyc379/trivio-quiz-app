@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,13 +29,15 @@ public class QuestionController {
     @Autowired
     private AnswerDao answerDao;
 
-    @GetMapping("/questions/{quizId}")
-    public String getQuestionsById(Model model, @PathVariable int quizId){
-        List<Question> questions = questionDao.getQuestionByQuizId(quizId);
+    @GetMapping("/questions")
+    public String getQuestionsById(Model model, @RequestParam(required = true) int quizId) {
+        Quiz quiz = quizDao.getQuizById(quizId);
+        ArrayList<Question> questions = questionDao.getQuestionByQuizId(quizId);
 
+        model.addAttribute("quiz", quiz);
         model.addAttribute("questions", questions);
 
-        return "questions/questions";
+        return "/questions/questions";
     }
 
 //
@@ -94,8 +93,6 @@ public class QuestionController {
 //        return "redirect:/questions/add";
 //
 //    }
-
-
 
 
 }

@@ -7,6 +7,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -18,17 +19,31 @@ public class QuestionDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public List<Question> getQuestionByQuizId(int quizId) {
-        return null;
+    public ArrayList<Question> getQuestionByQuizId(int quizId) {
+        ArrayList<Question> questions = new ArrayList<>();
+        String sql = """
+                    SELECT *
+                    FROM question
+                    WHERE quiz_id = ?
+                    ORDER BY question_number;
+                """;
+
+        var row = jdbcTemplate.queryForRowSet(sql, quizId);
+
+        while (row.next()) {
+            questions.add(mapRowToQuestion(row));
+        }
+
+        return questions;
     }
 
 
     public int getTotalNumberOfQuestionsByQuizId(int quizId) {
         String sql = """
-                        SELECT COUNT(*) AS total
-                        FROM question
-                        WHERE quiz_id = ?;
-                    """;
+                    SELECT COUNT(*) AS total
+                    FROM question
+                    WHERE quiz_id = ?;
+                """;
 
         var row = jdbcTemplate.queryForRowSet(sql, quizId);
 
@@ -40,21 +55,22 @@ public class QuestionDao {
     }
 
 
-    public Question getQuestion(int quizId, int questionNumber){
+    public Question getQuestion(int quizId, int questionNumber) {
         String sql = """
                 SELECT  *
                 FROM question
                 WHERE quiz_id = ?
                     AND question_number = ?;
-           
+                           
                 """;
         var row = jdbcTemplate.queryForRowSet(sql, quizId, questionNumber);
 
-        if(row.next()){
+        if (row.next()) {
             return mapRowToQuestion(row);
         }
         return null;
     }
+
     public void updateQuestion(Question question) {
 
         String sql = """
@@ -81,9 +97,8 @@ public class QuestionDao {
         String questionText = row.getString("question_text");
 
 
-        return new Question(questionId,quizId,questionNumber, questionText);
+        return new Question(questionId, quizId, questionNumber, questionText);
     }
-
 
 
 }
