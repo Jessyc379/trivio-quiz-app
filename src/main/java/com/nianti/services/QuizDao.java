@@ -73,6 +73,20 @@ public class QuizDao {
 
     }
 
+    public void addQuiz(Quiz quiz){
+
+        String sql = """
+                INSERT INTO quiz (quiz_title, is_live)
+                VALUES (?,?);
+                """;
+
+        jdbcTemplate.update(sql
+                , quiz.getTitle()
+                , quiz.getIsLive());
+
+
+    }
+
 
     private Quiz mapRowToQuiz(SqlRowSet row) {
         int id = row.getInt("quiz_id");

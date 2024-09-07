@@ -64,7 +64,7 @@ public class QuizController {
         Quiz quiz = quizDao.getQuizById(quizId);
         model.addAttribute("quiz", quiz);
         model.addAttribute("action", "edit");
-        return "/quizzes/edit-quiz";
+        return "/quizzes/add-edit-quiz";
     }
 
 
@@ -79,5 +79,30 @@ public class QuizController {
 
         return "redirect:/quizzes/manage";
     }
+    @GetMapping("/quizzes/add")
+    public String addQuiz(Model model){
+        model.addAttribute("quiz", new Quiz());
+        model.addAttribute("action", "add");
+
+        return "quizzes/add-edit-quiz";
+    }
+    //added 9.6 PM
+    @PostMapping("/quizzes/add")
+    public String addQuiz(Model model, @Valid @ModelAttribute("quiz") Quiz quiz, BindingResult result)
+    {
+        if(result.hasErrors())
+        {
+            model.addAttribute("isInvalid", true);
+
+            return "quizzes/add-edit";
+        }
+        quizDao.addQuiz(quiz);
+        return "redirect:/quizzes/manage";
+
+    }
+
+
+
+
 
 }
