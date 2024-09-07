@@ -1,0 +1,16 @@
+/* body {
+    font-size: 20px;
+} */
+
+#edit-quiz {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 30px;
+}
+
+.form-switch {
+    padding-left: 140px;
+}

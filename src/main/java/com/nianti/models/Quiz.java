@@ -1,10 +1,13 @@
 package com.nianti.models;
 
+import jakarta.validation.constraints.NotEmpty;
+
 import java.util.ArrayList;
 
 public class Quiz
 {
     private int quizId;
+    @NotEmpty(message="Quiz Title is required")
     private String title;
     private boolean isLive;
 

@@ -5,10 +5,12 @@ import com.nianti.models.Question;
 import com.nianti.models.Quiz;
 import com.nianti.services.QuestionDao;
 import com.nianti.services.QuizDao;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
@@ -67,8 +69,11 @@ public class QuizController {
 
 
     @PostMapping("/quizzes/{quizId}/edit")
-    public String editQuiz(@ModelAttribute("quiz") Quiz quiz, @PathVariable int quizId) {
-
+    public String editQuiz(Model model, @Valid @ModelAttribute("quiz") Quiz quiz, @PathVariable int quizId, BindingResult result) {
+        if (result.hasErrors()) {
+            model.addAttribute("isInvalid", true);
+            return "quizzes/edit-quiz";
+        }
         quiz.setQuizId(quizId);
         quizDao.updateQuiz(quiz);
 
