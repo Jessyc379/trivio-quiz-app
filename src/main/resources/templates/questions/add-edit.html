@@ -31,7 +31,10 @@
                 <label th:for="*{questionNumber}">Question Number</label>
             </div>
 
-            <input id="submit-btn" class="btn btn-outline-primary" type="submit" value="Save Question">
+            <div class="d-flex flex-row align-items-center gap-5">
+                <input id="submit-btn" class="btn btn-outline-primary" type="submit" value="Save Question">
+                <a id="cancel-btn" class="btn btn-outline-primary" th:href="@{|/questions?quizId=${question.quizId}|}">Cancel</a>                                                           
+            </div>
 
         </form>
 
