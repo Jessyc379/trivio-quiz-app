@@ -49,7 +49,7 @@ Throughout our process we used a trello board to track our progress and keep us 
 Once we knew what we wanted our website to look like we started coding, starting with the most important aspect first: accessing 
 the database quizzes and allowing users to take them! 
 
-<center><img src="src/main/resources/static/images/trello-design-board.png" width="400">  <img src="src/main/resources/static/images/web-design.png" width="400"> </center>
+<center><img src="src/main/resources/static/images/trello-design-board.png" width="400">  <img src="src/main/resources/static/images/web-page-design.png" width="400"> </center>
 
 We created a table chart to help vizualize our database tables and their corresponding keys for clear understanding while creating 
 our SQL queries to gather the correct data when neccessary
