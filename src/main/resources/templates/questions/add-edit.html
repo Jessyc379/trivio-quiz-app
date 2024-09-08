@@ -4,7 +4,7 @@
 <div th:replace="fragments/head :: head"></div>
 
 <body>
-    <script src="/js/validate-quiz.js"></script>
+    <script src="/js/validate-question.js"></script>
 
     <div th:replace="fragments/navigation :: nav"></div>
 
@@ -14,19 +14,25 @@
         <h1 th:if="${action} =='edit'">Edit Question</h1>
 
         <form id="edit-question" method="post" th:object="${question}" novalidate
-            th:class="${isInvalid} ? 'was-validated' : ''">
+            th:class="${isInvalid} ? 'was-validated' : ''" autocomplete="off">
+
             <div class="form-floating mb-3 w-100">
                 <input class="form-control" type="text" th:field="*{questionText}" placeholder="Question Text" required>
                 <div class="invalid-feedback">Enter the question text</div>
                 <label th:for="*{questionText}">Question Text</label>
             </div>
             <div class="form-floating mb-3 w-100">
-                <input class="form-control" type="text" th:field="*{questionNumber}" placeholder="Question Number" required>
-                <div class="invalid-feedback">Enter the question number</div>
+                <input class="form-control" type="text" th:field="*{questionNumber}" placeholder="Question Number"
+                    required pattern="[0-9]*[1-9][0-9]*">
+                <div class="invalid-feedback">
+                    Enter the question number<br>
+                    (must be greater than 0)
+                </div>
                 <label th:for="*{questionNumber}">Question Number</label>
             </div>
 
             <input id="submit-btn" class="btn btn-outline-primary" type="submit" value="Save Question">
+
         </form>
 
     </main>
