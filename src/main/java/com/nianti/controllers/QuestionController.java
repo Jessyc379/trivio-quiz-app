@@ -1,7 +1,5 @@
 package com.nianti.controllers;
 
-
-import com.nianti.models.Answer;
 import com.nianti.models.Question;
 import com.nianti.models.Quiz;
 import com.nianti.services.AnswerDao;
@@ -15,7 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class QuestionController {
@@ -26,11 +23,8 @@ public class QuestionController {
     @Autowired
     private QuestionDao questionDao;
 
-    @Autowired
-    private AnswerDao answerDao;
-
     @GetMapping("/questions")
-    public String getQuestionsById(Model model, @RequestParam(required = true) int quizId) {
+    public String getQuestionsByQuizId(Model model, @RequestParam(required = true) int quizId) {
         Quiz quiz = quizDao.getQuizById(quizId);
         ArrayList<Question> questions = questionDao.getQuestionByQuizId(quizId);
 
@@ -40,32 +34,29 @@ public class QuestionController {
         return "/questions/questions";
     }
 
-
     @GetMapping("/questions/{quizId}/{questionId}/edit")
-    public String editQuestion(Model model, @PathVariable int quizId, @PathVariable int questionId){
-
-    Question question = questionDao.getQuestionByQuestionId(questionId);
-
-
+    public String editQuestion(Model model, @PathVariable int quizId, @PathVariable int questionId) {
+        Question question = questionDao.getQuestionByQuestionId(questionId);
 
         model.addAttribute("question", question);
-        model.addAttribute("action" ,"edit");
-
+        model.addAttribute("action", "edit");
 
         return "/questions/add-edit";
-
     }
 
     @PostMapping("/questions/{quizId}/{questionId}/edit")
-    public String editQuestion(Model model, @Valid @ModelAttribute("question") Question question, BindingResult result, @PathVariable int quizId, @PathVariable int questionId) {
-        if(result.hasErrors()){
+    public String editQuestion(Model model,
+                               @Valid @ModelAttribute("question") Question question, BindingResult result,
+                               @PathVariable int quizId,
+                               @PathVariable int questionId) {
+        if (result.hasErrors()) {
             model.addAttribute("isInvalid", true);
+            model.addAttribute("action", "edit");
             return "/questions/add-edit";
         }
         question.setQuestionId(questionId);
         question.setQuizId(quizId);
         questionDao.updateQuestion(question);
-
 
         return "redirect:/questions?quizId=" + question.getQuizId();
 
@@ -92,6 +83,4 @@ public class QuestionController {
 //        return "redirect:/questions/add";
 //
 //    }
-
-
 }

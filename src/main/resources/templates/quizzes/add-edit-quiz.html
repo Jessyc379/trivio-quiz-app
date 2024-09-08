@@ -14,8 +14,8 @@
         <h1 th:if="${action} =='edit'">Edit Quiz</h1>
         <h2 th:text="${quiz.title}"></h2>
 
-        <form id="edit-quiz" method="post" th:object="${quiz}" novalidate
-            th:class="${isInvalid} ? 'was-validated' : ''">
+        <form id="edit-quiz" method="post" th:object="${quiz}" novalidate th:class="${isInvalid} ? 'was-validated' : ''"
+            autocomplete="off">
             <div class="form-floating mb-3 w-100">
                 <input class="form-control" type="text" th:field="*{title}" placeholder="Title" required>
                 <div class="invalid-feedback">Enter the quiz title</div>
