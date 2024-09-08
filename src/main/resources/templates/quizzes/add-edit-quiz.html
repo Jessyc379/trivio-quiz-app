@@ -22,12 +22,15 @@
                 <label th:for="*{title}">Title</label>
             </div>
 
-            <div class="form-check form-switch w-100">
+            <div class="form-check form-switch w-100 mb-5">
                 <label class="form-check-label" for="isLive">Active Status</label>
                 <input class="form-check-input" type="checkbox" id="isLive" name="isLive" th:field="*{isLive}">
             </div>
 
-            <input id="submit-btn" class="btn btn-outline-primary" type="submit" value="Save Quiz">
+            <div class="d-flex flex-row align-items-center gap-5">
+                <input id="submit-btn" class="btn btn-outline-primary" type="submit" value="Save Quiz">
+                <a id="cancel-btn" class="btn btn-outline-primary" href="/quizzes/manage">Cancel</a>
+            </div>
         </form>
 
     </main>
