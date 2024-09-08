@@ -6,12 +6,13 @@
 <body>
 
 <div th:replace="fragments/navigation :: nav"></div>
-
+<main class="d-flex flex-column align-items-center gap-3 p-5">
+    <h1>Choose A Quiz</h1>
 <div class="container mt-4">
     <div class="card mb-2" th:each="quiz:${quizzes}">
         <a th:href="@{|/quizzes/${quiz.quizId}|}" class="card-header" th:text="${quiz.title}"></a>
     </div>
 </div>
-
+</main>
 </body>
 </html>
