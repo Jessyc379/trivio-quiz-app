@@ -7,7 +7,7 @@ to make quiz taking easier for both the quiz creater and quiz taker in one onlin
 to take previously created quizzes and/or create new quizzes for others to interact with. When navigating to our home 
 page you will have the option to navigate to either the "Take Quiz" or "Quiz Management" page depending on your intent.
 
-
+<center> <img src="src/main/resources/static/images/home-page.png" width="800"> </center>
 
 As you can tell, our webpage is simple, clean and easy to read, while edging on the side of nostaglia. Think back to the 
 days of chalkboards and rulers, a sunny day where you can feel the chalk dust tickling your nose while your teacher hands 
