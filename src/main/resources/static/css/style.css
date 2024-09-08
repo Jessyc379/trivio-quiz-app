@@ -1,8 +1,14 @@
-/* body {
-    font-size: 20px;
-} */
+.header-container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
 
-#edit-quiz, #edit-question {
+#home-img {
+    width: 500px;
+}
+
+#edit-quiz,
+#edit-question {
     width: 100%;
     max-width: 400px;
     display: flex;
@@ -11,11 +17,18 @@
     row-gap: 30px;
 }
 
+#edit-question {
+    max-width: 600px;
+}
+
 .form-switch {
     padding-left: 140px;
 }
 
-#edit-question{
-    max-width: 600px;
+@media only screen and (max-width: 540px) {
+
+    #home-img {
+        width: 100%;
+    }
 
 }
