@@ -36,6 +36,7 @@ public class QuestionDao {
 
         return questions;
     }
+
     public Question getQuestionByQuestionId(int questionId) {
         ArrayList<Question> questions = new ArrayList<>();
         String sql = """
@@ -52,9 +53,6 @@ public class QuestionDao {
 
         return null;
     }
-
-
-
 
     public int getTotalNumberOfQuestionsByQuizId(int quizId) {
         String sql = """
@@ -75,22 +73,32 @@ public class QuestionDao {
 
     public Question getQuestion(int quizId, int questionNumber) {
         String sql = """
-                SELECT  *
-                FROM question
-                WHERE quiz_id = ?
+                    SELECT  *
+                    FROM question
+                    WHERE quiz_id = ?
                     AND question_number = ?;
-                           
                 """;
         var row = jdbcTemplate.queryForRowSet(sql, quizId, questionNumber);
 
         if (row.next()) {
             return mapRowToQuestion(row);
         }
+
         return null;
     }
 
-    public void updateQuestion(Question question) {
+    public void addQuestion(Question question) {
+        String sql = """
+                    INSERT INTO question (quiz_id, question_number, question_text)
+                    VALUES (?,?,?);
+                """;
+        jdbcTemplate.update(sql
+                , question.getQuizId()
+                , question.getQuestionNumber()
+                , question.getQuestionText());
+    }
 
+    public void updateQuestion(Question question) {
         String sql = """
                 UPDATE question
                 SET question_number = ?
@@ -105,7 +113,6 @@ public class QuestionDao {
 
     }
 
-
     private Question mapRowToQuestion(SqlRowSet row) {
         int questionId = row.getInt("question_id");
         int quizId = row.getInt("quiz_id");
@@ -115,6 +122,4 @@ public class QuestionDao {
 
         return new Question(questionId, quizId, questionNumber, questionText);
     }
-
-
 }

@@ -56,7 +56,6 @@ public class QuizDao {
 
 
     public void updateQuiz(Quiz quiz) {
-
         String sql = """
                 UPDATE quiz
                 SET quiz_title = ?
@@ -70,11 +69,9 @@ public class QuizDao {
                 quiz.getQuizId()
 
         );
-
     }
 
     public void addQuiz(Quiz quiz){
-
         String sql = """
                 INSERT INTO quiz (quiz_title, is_live)
                 VALUES (?,?);
@@ -83,10 +80,7 @@ public class QuizDao {
         jdbcTemplate.update(sql
                 , quiz.getTitle()
                 , quiz.getIsLive());
-
-
     }
-
 
     private Quiz mapRowToQuiz(SqlRowSet row) {
         int id = row.getInt("quiz_id");
@@ -95,4 +89,5 @@ public class QuizDao {
 
         return new Quiz(id, title, isLive);
     }
+    
 }

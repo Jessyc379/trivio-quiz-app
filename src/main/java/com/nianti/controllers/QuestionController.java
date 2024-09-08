@@ -34,6 +34,33 @@ public class QuestionController {
         return "/questions/questions";
     }
 
+    @GetMapping("/questions/{quizId}/add")
+    public String addQuestion(Model model, @PathVariable int quizId) {
+        Question question = new Question();
+        question.setQuizId(quizId);
+
+        model.addAttribute("question", question);
+        model.addAttribute("action", "add");
+
+        return "/questions/add-edit";
+    }
+
+    @PostMapping("/questions/{quizId}/add")
+    public String addQuestion(Model model,
+                              @Valid @ModelAttribute("question") Question question, BindingResult result,
+                              @PathVariable int quizId) {
+        if (result.hasErrors()) {
+            model.addAttribute("isInvalid", true);
+            model.addAttribute("action", "add");
+            return "/questions/add-edit";
+        }
+        question.setQuizId(quizId);
+        questionDao.addQuestion(question);
+
+        return "redirect:/questions?quizId=" + question.getQuizId();
+
+    }
+
     @GetMapping("/questions/{quizId}/{questionId}/edit")
     public String editQuestion(Model model, @PathVariable int quizId, @PathVariable int questionId) {
         Question question = questionDao.getQuestionByQuestionId(questionId);
@@ -61,26 +88,4 @@ public class QuestionController {
         return "redirect:/questions?quizId=" + question.getQuizId();
 
     }
-//
-//    @GetMapping("/quizzes/{quizId}/edit")
-//    public String addQuestion(Model model){
-//        model.addAttribute("question", new Question());
-//        model.addAttribute("action", "add");
-//        return "quizzes/add-edit";
-//
-//    }
-
-//    @PostMapping("/quizzes/{quizId}/edit")
-//    public String addQuestion(Model model, @Valid @ModelAttribute("question") Question question, BindingResult result){
-//        if(result.hasErrors())
-//        {
-//            model.addAttribute("isInvalid", true);
-//            // redirect back to the add page
-//            return "quizzes/add-edit";
-//        }
-//
-//        questionDao.addQuestions(question);
-//        return "redirect:/questions/add";
-//
-//    }
 }
