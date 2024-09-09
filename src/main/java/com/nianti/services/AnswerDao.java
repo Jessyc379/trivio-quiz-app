@@ -22,7 +22,7 @@ public class AnswerDao {
     }
 
     public ArrayList<Answer> getAnswersByQuestionId(int questionId) {
-        ArrayList<Answer> answers= new ArrayList<>();
+        ArrayList<Answer> answers = new ArrayList<>();
         String sql = """
                     SELECT *
                     FROM answer
@@ -31,11 +31,40 @@ public class AnswerDao {
         var row = jdbcTemplate.queryForRowSet(sql, questionId);
 
         while (row.next()) {
-            var answer = mapRowToAnswer(row);
-            answers.add(answer);
+            answers.add(mapRowToAnswer(row));
         }
 
         return answers;
+    }
+
+    public Answer getAnswerByAnswerId(int answerId) {
+        String sql = """
+                    SELECT *
+                    FROM answer
+                    WHERE answer_id = ?;
+                """;
+        var row = jdbcTemplate.queryForRowSet(sql, answerId);
+
+        if (row.next()) {
+            return mapRowToAnswer(row);
+        }
+
+        return null;
+    }
+
+    public void updateAnswer(Answer answer) {
+        String sql = """
+                    UPDATE answer
+                    SET question_id = ?
+                        , answer_text = ?
+                        , is_correct = ?
+                    WHERE answer_id = ?;
+                """;
+        jdbcTemplate.update(sql
+                , answer.getQuestionId()
+                , answer.getAnswerText()
+                , answer.getIsCorrect());
+
     }
 
     private Answer mapRowToAnswer(SqlRowSet row) {
@@ -46,4 +75,5 @@ public class AnswerDao {
 
         return new Answer(answerId, questionId, answerText, isCorrect);
     }
+
 }
