@@ -1,5 +1,6 @@
 package com.nianti.services;
 
+import com.nianti.models.Answer;
 import com.nianti.models.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -70,7 +71,6 @@ public class QuestionDao {
         return 0;
     }
 
-
     public Question getQuestion(int quizId, int questionNumber) {
         String sql = """
                     SELECT  *
@@ -122,4 +122,5 @@ public class QuestionDao {
 
         return new Question(questionId, quizId, questionNumber, questionText);
     }
+
 }

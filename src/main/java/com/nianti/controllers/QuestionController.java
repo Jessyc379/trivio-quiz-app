@@ -30,6 +30,7 @@ public class QuestionController {
 
         model.addAttribute("quiz", quiz);
         model.addAttribute("questions", questions);
+        model.addAttribute("title", "Quiz Questions");
 
         return "/questions/questions";
     }
@@ -41,6 +42,7 @@ public class QuestionController {
 
         model.addAttribute("question", question);
         model.addAttribute("action", "add");
+        model.addAttribute("title", "Add New Question");
 
         return "/questions/add-edit";
     }
@@ -67,6 +69,7 @@ public class QuestionController {
 
         model.addAttribute("question", question);
         model.addAttribute("action", "edit");
+        model.addAttribute("title", "Edit Question");
 
         return "/questions/add-edit";
     }

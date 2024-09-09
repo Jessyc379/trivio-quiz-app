@@ -18,7 +18,7 @@
             <div th:class="${quiz.isLive ? 'text-success' : 'text-secondary'}"
                 th:text="${quiz.isLive ? 'Active' : 'Inactive'}">
             </div>
-            <a th:href="@{|/questions?quizId=${quiz.quizId}|}" class="btn btn-outline-primary">Quiz Questions</a>
+            <a th:href="@{|/questions?quizId=${quiz.quizId}|}" class="btn btn-outline-primary">Quiz&nbsp;Questions</a>
             <a th:href="@{|/quizzes/${quiz.quizId}/edit|}" class="btn btn-outline-primary">Edit</a>
         </div>
     </div>

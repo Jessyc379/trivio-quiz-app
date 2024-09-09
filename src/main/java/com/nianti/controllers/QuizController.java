@@ -17,13 +17,10 @@ import javax.sql.DataSource;
 
 @Controller
 public class QuizController {
-
     @Autowired
     private QuizDao quizDao;
-
     @Autowired
     private QuestionDao questionDao;
-
 
     @GetMapping("/quizzes")
     public String allActiveQuizzes(Model model) {
@@ -49,21 +46,22 @@ public class QuizController {
     public String quizPage(Model model, @PathVariable int quizId) {
         Quiz quiz = quizDao.getQuizById(quizId);
         model.addAttribute("quiz", quiz);
+        model.addAttribute("title", "Take Quiz");
 
-        // get number of questions
         int questionsTotal = questionDao.getTotalNumberOfQuestionsByQuizId(quizId);
         model.addAttribute("questionsTotal", questionsTotal);
 
         return "/quizzes/take-quiz";
     }
 
-
     @GetMapping("/quizzes/{quizId}/edit")
     public String editQuiz(Model model, @PathVariable int quizId) {
-
         Quiz quiz = quizDao.getQuizById(quizId);
+
         model.addAttribute("quiz", quiz);
         model.addAttribute("action", "edit");
+        model.addAttribute("title", "Edit Quiz");
+
         return "/quizzes/add-edit-quiz";
     }
 
@@ -80,31 +78,25 @@ public class QuizController {
 
         return "redirect:/quizzes/manage";
     }
+
     @GetMapping("/quizzes/add")
-    public String addQuiz(Model model){
+    public String addQuiz(Model model) {
         model.addAttribute("quiz", new Quiz());
         model.addAttribute("action", "add");
+        model.addAttribute("title", "Create Quiz");
 
         return "quizzes/add-edit-quiz";
     }
-    //added 9.6 PM
+
     @PostMapping("/quizzes/add")
-    public String addQuiz(Model model, @Valid @ModelAttribute("quiz") Quiz quiz, BindingResult result)
-    {
-        if(result.hasErrors())
-        {
+    public String addQuiz(Model model, @Valid @ModelAttribute("quiz") Quiz quiz, BindingResult result) {
+        if (result.hasErrors()) {
             model.addAttribute("isInvalid", true);
             model.addAttribute("action", "add");
-
             return "quizzes/add-edit-quiz";
         }
         quizDao.addQuiz(quiz);
         return "redirect:/quizzes/manage";
-
     }
-
-
-
-
 
 }
