@@ -72,7 +72,7 @@ public class AnswerController {
         return "/answers/add-edit";
     }
 
-    @GetMapping("/answers/{questionId}/{answerId}/edit")
+    @PostMapping("/answers/{questionId}/{answerId}/edit")
     public String editAnswer(Model model,
                              @Valid @ModelAttribute("answer") Answer answer, BindingResult result,
                              @PathVariable int questionId,

@@ -63,7 +63,8 @@ public class AnswerDao {
         jdbcTemplate.update(sql
                 , answer.getQuestionId()
                 , answer.getAnswerText()
-                , answer.getIsCorrect());
+                , answer.getIsCorrect()
+                , answer.getAnswerId());
 
     }
 

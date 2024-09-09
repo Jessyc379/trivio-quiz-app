@@ -8,7 +8,8 @@
 }
 
 #edit-quiz,
-#edit-question {
+#edit-question,
+#edit-answer {
     width: 100%;
     max-width: 400px;
     display: flex;
@@ -17,12 +18,9 @@
     row-gap: 30px;
 }
 
-#edit-question {
+#edit-question,
+#edit-answer {
     max-width: 600px;
-}
-
-.form-switch {
-    padding-left: 140px;
 }
 
 @media only screen and (max-width: 540px) {
