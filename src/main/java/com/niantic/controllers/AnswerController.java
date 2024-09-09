@@ -96,6 +96,7 @@ public class AnswerController {
 
         model.addAttribute("question", question);
         model.addAttribute("answer", answer);
+        model.addAttribute("title", "Delete Answer");
 
         return "/answers/delete";
     }

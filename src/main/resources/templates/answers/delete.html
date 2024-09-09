@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/head :: head"></div>
+
+<body>
+
+    <div th:replace="fragments/navigation :: nav"></div>
+
+    <main class="d-flex flex-column align-items-center gap-3 p-5">
+
+        <h1>Delete Answer</h1>
+
+        <h3>
+            <i class="fa fa-exclamation-circle text-danger p-3"></i>
+            You are about to delete the following answer
+        </h3>
+
+        <div class="d-flex flex-column align-items-center gap-3 text-nowrap">
+
+            <div class="d-flex flex-row gap-5">
+                <div>Question</div>
+                <div class="text-nowrap" th:text="${question.questionText}"></div>
+            </div>
+
+            <div class="d-flex flex-row gap-5">
+                <div>Answer&nbsp;text</div>
+                <div class="text-nowrap" th:text="${answer.answerText}"></div>
+            </div>
+
+            <div class="d-flex flex-row gap-5">
+                <div>Is&nbsp;correct?</div>
+                <div th:text="${answer.isCorrect ? 'Correct' : 'Incorrect'}"></div>
+            </div>
+
+            <form method="post" class="d-flex flex-row justify-content-center gap-5">
+                <a id="cancel-btn" class="btn btn-outline-primary"
+                    th:href="@{|/answers?questionId=${answer.questionId}|}">Cancel</a>
+                <input id="submit-btn" class="btn btn-outline-primary" type="submit" value="Delete Answer">
+            </form>
+
+        </div>
+
+    </main>
+</body>
+
+</html>
