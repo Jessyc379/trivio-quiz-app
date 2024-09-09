@@ -1,10 +1,9 @@
-package com.nianti.controllers;
+package com.niantic.controllers;
 
-import com.nianti.models.Question;
-import com.nianti.models.Quiz;
-import com.nianti.services.AnswerDao;
-import com.nianti.services.QuestionDao;
-import com.nianti.services.QuizDao;
+import com.niantic.models.Question;
+import com.niantic.models.Quiz;
+import com.niantic.services.QuestionDao;
+import com.niantic.services.QuizDao;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

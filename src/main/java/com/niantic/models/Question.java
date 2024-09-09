@@ -1,4 +1,4 @@
-package com.nianti.models;
+package com.niantic.models;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;

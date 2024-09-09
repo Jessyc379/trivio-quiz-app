@@ -1,6 +1,6 @@
-package com.nianti.services;
+package com.niantic.services;
 
-import com.nianti.models.Quiz;
+import com.niantic.models.Quiz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;

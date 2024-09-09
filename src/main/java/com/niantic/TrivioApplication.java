@@ -1,4 +1,4 @@
-package com.nianti;
+package com.niantic;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,10 +1,10 @@
-package com.nianti.controllers.apis;
+package com.niantic.controllers.apis;
 
 
-import com.nianti.models.Answer;
-import com.nianti.models.Question;
-import com.nianti.services.AnswerDao;
-import com.nianti.services.QuestionDao;
+import com.niantic.models.Answer;
+import com.niantic.models.Question;
+import com.niantic.services.AnswerDao;
+import com.niantic.services.QuestionDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -1,8 +1,6 @@
-package com.nianti.services;
+package com.niantic.services;
 
-import com.nianti.models.Answer;
-import com.nianti.models.Question;
-import com.nianti.models.Quiz;
+import com.niantic.models.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -10,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class AnswerDao {

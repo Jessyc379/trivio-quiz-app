@@ -33,9 +33,9 @@ function getQuestion() {
 
     if (currentQuestionNumber == 0) {
         takeQuizBtn.disabled = true;
-        const container = document.getElementById("question-container");
-        container.classList.remove("d-none");
-        container.classList.add("d-flex", "flex-column", "align-items-center", "gap-3");
+        const questionContainer = document.getElementById("question-container");
+        questionContainer.classList.remove("d-none");
+        questionContainer.classList.add("d-flex", "flex-column", "align-items-center", "gap-3");
     }
 
     currentQuestionNumber++;
@@ -64,7 +64,7 @@ function getQuestion() {
         const answersList = data.answers;
         console.log(answersList)
         answersList.forEach(answer => createAnswerDiv(answer, answersContainer));
-        correctAnswer = answersList.filter(answer => answer.correct === true)[0].answerText;
+        correctAnswer = answersList.filter(answer => answer.isCorrect)[0].answerText;
         console.log(`correctAnswer: ${correctAnswer}`);
 
     }).catch(error => {
@@ -110,7 +110,7 @@ function handleSubmitAnswer(event) {
         resultDiv.textContent = "Correct!";
         resultDiv.classList.add("text-success");
     } else {
-        resultDiv.textContent = "WRONG :(";
+        resultDiv.textContent = "Wrong";
         resultDiv.classList.add("text-danger");
     }
 
@@ -140,6 +140,9 @@ function disableAnswers() {
 };
 
 function showResults() {
+    const questionContainer = document.getElementById("question-container");
+    questionContainer.classList.add("d-none");
+
     const resultsDiv = document.getElementById("results-container");
     resultsDiv.classList.remove("d-none");
     resultsDiv.classList.add("d-flex", "flex-column", "align-items-center");
@@ -147,8 +150,7 @@ function showResults() {
     const resultsBtn = document.getElementById("show-results-btn");
 
     resultsBtn.addEventListener("click", displayResults);
-
-}
+};
 
 function displayResults() {
     const resultsBtn = document.getElementById("show-results-btn");
@@ -174,9 +176,6 @@ function displayResults() {
     }
     results.classList.remove("d-none");
     results.classList.add("d-flex", "flex-column", "align-items-center");
-
-
-
 }
 
 

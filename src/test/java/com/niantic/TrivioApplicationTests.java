@@ -1,4 +1,4 @@
-package com.nianti;
+package com.niantic;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

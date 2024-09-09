@@ -1,19 +1,15 @@
-package com.nianti.controllers;
+package com.niantic.controllers;
 
 
-import com.nianti.models.Question;
-import com.nianti.models.Quiz;
-import com.nianti.services.QuestionDao;
-import com.nianti.services.QuizDao;
+import com.niantic.models.Quiz;
+import com.niantic.services.QuestionDao;
+import com.niantic.services.QuizDao;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.sql.DataSource;
 
 @Controller
 public class QuizController {

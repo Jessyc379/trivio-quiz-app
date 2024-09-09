@@ -1,6 +1,6 @@
-package com.nianti.controllers;
+package com.niantic.controllers;
 
-import com.nianti.services.QuizDao;
+import com.niantic.services.QuizDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
