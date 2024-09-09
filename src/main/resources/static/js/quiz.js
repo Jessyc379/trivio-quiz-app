@@ -1,24 +1,28 @@
 let quizId;
-let total;
-let takeQuizBtn;
+let totalNumberOfQuestions;
+
 let correctAnswer;
 let userQuizScore = 0;
 let currentQuestionNumber = 0;
-let resultDiv;
-let nextBtn;
-let submitBtn;
 
+let takeQuizBtn;
+let submitBtn;
+let nextBtn;
+
+let questionResultDiv;
+let quizResultsContainer; 
 
 
 document.addEventListener("DOMContentLoaded", () => {
     quizId = document.getElementById("quiz-id").textContent;
-    total = +document.getElementById("total").textContent;
+    totalNumberOfQuestions = +document.getElementById("total").textContent;
 
     takeQuizBtn = document.getElementById("take-quiz-btn");
     nextBtn = document.getElementById("next-question-btn");
     submitBtn = document.getElementById("submit-btn");
 
-    resultDiv = document.getElementById("result");
+    questionResultDiv = document.getElementById("result");
+    quizResultsContainer = document.getElementById("results-container");
 
     const answersForm = document.getElementById("answers-form");
 
@@ -35,7 +39,9 @@ function getQuestion() {
         takeQuizBtn.disabled = true;
         const questionContainer = document.getElementById("question-container");
         questionContainer.classList.remove("d-none");
-        questionContainer.classList.add("d-flex", "flex-column", "align-items-center", "gap-3");
+        quizResultsContainer.classList.add("d-none");
+        const quizResults = document.getElementById("quiz-results");
+        quizResults.classList.add("d-none");
     }
 
     currentQuestionNumber++;
@@ -44,9 +50,9 @@ function getQuestion() {
     const answersContainer = document.getElementById("answers-list");
     answersContainer.innerHTML = "";
 
-    resultDiv.classList.add("d-none");
-    resultDiv.classList.remove("text-danger");
-    resultDiv.classList.remove("text-success");
+    questionResultDiv.classList.add("d-none");
+    questionResultDiv.classList.remove("text-danger");
+    questionResultDiv.classList.remove("text-success");
 
     nextBtn.classList.add("d-none");
     submitBtn.classList.remove("d-none");
@@ -59,14 +65,10 @@ function getQuestion() {
         }
         throw new Error(response);
     }).then(data => {
-        console.log(data);
         questionText.textContent = data.questionText;
         const answersList = data.answers;
-        console.log(answersList)
         answersList.forEach(answer => createAnswerDiv(answer, answersContainer));
         correctAnswer = answersList.filter(answer => answer.isCorrect)[0].answerText;
-        console.log(`correctAnswer: ${correctAnswer}`);
-
     }).catch(error => {
         console.log(error)
     });
@@ -101,20 +103,19 @@ function handleSubmitAnswer(event) {
     event.preventDefault();
     const checkedAnswer = getCheckedAnswerValue();
 
-    console.log(`User selected: ${checkedAnswer}`);
-    resultDiv.classList.remove("d-none");
+    questionResultDiv.classList.remove("d-none");
     submitBtn.classList.add("d-none");
     disableAnswers();
     if (checkedAnswer === correctAnswer) {
         userQuizScore++;
-        resultDiv.textContent = "Correct!";
-        resultDiv.classList.add("text-success");
+        questionResultDiv.textContent = "Correct!";
+        questionResultDiv.classList.add("text-success");
     } else {
-        resultDiv.textContent = "Wrong";
-        resultDiv.classList.add("text-danger");
+        questionResultDiv.textContent = "Wrong";
+        questionResultDiv.classList.add("text-danger");
     }
 
-    if (currentQuestionNumber + 1 <= total) {
+    if (currentQuestionNumber + 1 <= totalNumberOfQuestions) {
         nextBtn.classList.remove("d-none");
         nextBtn.classList.add("btn", "btn-outline-primary");
     } else {
@@ -140,24 +141,23 @@ function disableAnswers() {
 };
 
 function showResults() {
-    const questionContainer = document.getElementById("question-container");
-    questionContainer.classList.add("d-none");
-
-    const resultsDiv = document.getElementById("results-container");
-    resultsDiv.classList.remove("d-none");
-    resultsDiv.classList.add("d-flex", "flex-column", "align-items-center");
+    quizResultsContainer.classList.remove("d-none");
 
     const resultsBtn = document.getElementById("show-results-btn");
+    resultsBtn.classList.remove("d-none");
 
     resultsBtn.addEventListener("click", displayResults);
 };
 
 function displayResults() {
+    const questionContainer = document.getElementById("question-container");
+    questionContainer.classList.add("d-none");
+
     const resultsBtn = document.getElementById("show-results-btn");
     resultsBtn.classList.add("d-none");
 
     const results = document.getElementById("quiz-results");
-    const percent = Math.round((userQuizScore / total * 10000) / 100);
+    const percent = Math.round((userQuizScore /  totalNumberOfQuestions * 10000) / 100);
 
     const scoreSpan = document.getElementById("score");
     scoreSpan.textContent = userQuizScore;
@@ -166,16 +166,22 @@ function displayResults() {
     percentSpan.textContent = `${percent}%`;
 
     if (percent >= 80) {
-        percentSpan.classList.add("text-success")
+        percentSpan.classList.add("text-success");
     }
     else if (percent >= 60) {
-        percentSpan.classList.add("text-warning")
+        percentSpan.classList.add("text-warning");
     }
     else {
-        percentSpan.classList.add("text-danger")
+        percentSpan.classList.add("text-danger");
     }
     results.classList.remove("d-none");
-    results.classList.add("d-flex", "flex-column", "align-items-center");
-}
 
+    resetTakeQuizPage();
+};
 
+function resetTakeQuizPage() {
+    takeQuizBtn.disabled = false;
+    takeQuizBtn.textContent = "Retake Quiz";
+    currentQuestionNumber = 0;
+    userQuizScore = 0;
+};

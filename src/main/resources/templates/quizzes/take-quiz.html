@@ -20,7 +20,7 @@
 
         <button id="take-quiz-btn" type="button" class="btn btn-outline-primary">Take Quiz</button>
 
-        <div id="question-container" class="d-none card p-5 m-5">
+        <div id="question-container" class="d-none card p-5 d-flex flex-column align-items-center gap-3">
             <div id="question-text"></div>
             <form id="answers-form">
                 <div id="answers-list" class="mb-3"></div>
@@ -29,10 +29,10 @@
             <div id="result"></div>
             <button id="next-question-btn" type="button" class="d-none">Next</button>
         </div>
-        <div id="results-container" class="d-none card p-5 m-5">
+        <div id="results-container" class="d-none card p-5 d-flex flex-column align-items-center">
             <p>You have completed the quiz!</p>
             <button id="show-results-btn" class="btn btn-outline-primary" type="button">Show Results</button>
-            <div id="quiz-results" class="d-none">
+            <div id="quiz-results" class="d-none d-flex flex-column align-items-center">
                 <p>Your Score: <span id="score"></span></p>
                 <p>Your Percent: <span id="percent" class="fs-4"></span></p>
             </div>
