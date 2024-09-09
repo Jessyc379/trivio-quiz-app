@@ -46,7 +46,10 @@ function getQuestion() {
 
     currentQuestionNumber++;
 
+    const questionNumber = document.getElementById("question-number");
+    questionNumber.textContent = currentQuestionNumber;
     const questionText = document.getElementById("question-text");
+    questionText.textContent = "";
     const answersContainer = document.getElementById("answers-list");
     answersContainer.innerHTML = "";
 
@@ -70,7 +73,7 @@ function getQuestion() {
         answersList.forEach(answer => createAnswerDiv(answer, answersContainer));
         correctAnswer = answersList.filter(answer => answer.isCorrect)[0].answerText;
     }).catch(error => {
-        console.log(error)
+        console.log(error);
     });
 };
 

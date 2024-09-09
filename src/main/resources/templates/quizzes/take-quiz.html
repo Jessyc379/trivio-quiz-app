@@ -21,7 +21,8 @@
         <button id="take-quiz-btn" type="button" class="btn btn-outline-primary">Take Quiz</button>
 
         <div id="question-container" class="d-none card p-5 d-flex flex-column align-items-center gap-3">
-            <div id="question-text"></div>
+            <div>Question&nbsp;<span id="question-number"></span></div>
+            <h3 id="question-text"></h3>
             <form id="answers-form">
                 <div id="answers-list" class="mb-3"></div>
                 <input id="submit-btn" class="btn btn-outline-primary" type="submit" value="Submit answer">
@@ -37,7 +38,6 @@
                 <p>Your Percent: <span id="percent" class="fs-4"></span></p>
             </div>
         </div>
-
 
     </main>
 
