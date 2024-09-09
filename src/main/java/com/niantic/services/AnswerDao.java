@@ -76,6 +76,12 @@ public class AnswerDao {
 
     }
 
+    public void deleteAnswer(int answerId) {
+        String sql = "DELETE FROM answer WHERE answer_id = ?;";
+
+        jdbcTemplate.update(sql, answerId);
+    }
+
     private Answer mapRowToAnswer(SqlRowSet row) {
         int answerId = row.getInt("answer_id");
         int questionId = row.getInt("question_id");

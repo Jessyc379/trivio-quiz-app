@@ -87,6 +87,23 @@ public class AnswerController {
         answerDao.updateAnswer(answer);
 
         return "redirect:/answers?questionId=" + questionId;
+    }
 
+    @GetMapping("/answers/{questionId}/{answerId}/delete")
+    public String deleteAnswer(Model model, @PathVariable int questionId, @PathVariable int answerId) {
+        Question question = questionDao.getQuestionByQuestionId(questionId);
+        Answer answer = answerDao.getAnswerByAnswerId(answerId);
+
+        model.addAttribute("question", question);
+        model.addAttribute("answer", answer);
+
+        return "/answers/delete";
+    }
+
+    @PostMapping("/answers/{questionId}/{answerId}/delete")
+    public String deleteAnswer(@PathVariable int questionId, @PathVariable int answerId) {
+        answerDao.deleteAnswer(answerId);
+
+        return "redirect:/answers?questionId=" + questionId;
     }
 }
