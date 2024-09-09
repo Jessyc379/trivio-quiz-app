@@ -33,34 +33,34 @@ public class AnswerController {
         return "/answers/answers";
     }
 
-    //    @GetMapping("/questions/{quizId}/add")
-//    public String addQuestion(Model model, @PathVariable int quizId) {
-//        Question question = new Question();
-//        question.setQuizId(quizId);
-//
-//        model.addAttribute("question", question);
-//        model.addAttribute("action", "add");
-//        model.addAttribute("title", "Add Answer");
-//
-//        return "/questions/add-edit";
-//    }
-//
-//    @PostMapping("/questions/{quizId}/add")
-//    public String addQuestion(Model model,
-//                              @Valid @ModelAttribute("question") Question question, BindingResult result,
-//                              @PathVariable int quizId) {
-//        if (result.hasErrors()) {
-//            model.addAttribute("isInvalid", true);
-//            model.addAttribute("action", "add");
-//            return "/questions/add-edit";
-//        }
-//        question.setQuizId(quizId);
-//        questionDao.addQuestion(question);
-//
-//        return "redirect:/questions?quizId=" + question.getQuizId();
-//
-//    }
-//
+    @GetMapping("/answers/{questionId}/add")
+    public String addAnswer(Model model, @PathVariable int questionId) {
+        Answer answer = new Answer();
+        answer.setQuestionId(questionId);
+
+        model.addAttribute("answer", answer);
+        model.addAttribute("action", "add");
+        model.addAttribute("title", "Add Answer");
+
+        return "/answers/add-edit";
+    }
+
+    @PostMapping("/answers/{questionId}/add")
+    public String addQuestion(Model model,
+                              @Valid @ModelAttribute("answer") Answer answer, BindingResult result,
+                              @PathVariable int questionId) {
+        if (result.hasErrors()) {
+            model.addAttribute("isInvalid", true);
+            model.addAttribute("action", "add");
+            return "/answers/add-edit";
+        }
+
+        answer.setQuestionId(questionId);
+        answerDao.addAnswer(answer);
+
+        return "redirect:/answers?questionId=" + questionId;
+    }
+
     @GetMapping("/answers/{questionId}/{answerId}/edit")
     public String editAnswer(Model model, @PathVariable int answerId) {
         Answer answer = answerDao.getAnswerByAnswerId(answerId);

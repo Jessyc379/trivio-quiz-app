@@ -49,6 +49,17 @@ public class AnswerDao {
         return null;
     }
 
+    public void addAnswer(Answer answer) {
+        String sql = """
+                    INSERT INTO answer (question_id, answer_text, is_correct)
+                    VALUES (?,?,?);
+                """;
+        jdbcTemplate.update(sql
+                , answer.getQuestionId()
+                , answer.getAnswerText()
+                , answer.getIsCorrect());
+    }
+
     public void updateAnswer(Answer answer) {
         String sql = """
                     UPDATE answer
