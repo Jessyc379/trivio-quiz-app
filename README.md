@@ -62,8 +62,25 @@ our SQL queries to gather the correct data when neccessary
 We had a few bugs that popped up throughout this project.
 1) Server-side validation was problematic. We were unable to recieve appropriate errors for when fields were left empty in our edit/add forms. We tried 
 use of both @NotEmpty and @NotBlank, but neither seemed to change the issue. 
+We ended up realizing that we were using the wrong order of parameters within our controllers
+Originally we wrote
+```
+@PostMapping("/questions/{quizId}/add")
+    public String addQuestion(Model model,
+                              @Valid @ModelAttribute("question") Question question, @PathVariable int quizId, BindingResult result
+                              ) {
+```
 
-**need to fix this bug**
+and realized that we needed to have BindingResult following directly after the @Valid parameter in order for it to properyl validate
+
+```
+
+    @PostMapping("/questions/{quizId}/add")
+    public String addQuestion(Model model,
+                              @Valid @ModelAttribute("question") Question question, BindingResult result,
+                              @PathVariable int quizId)
+```
+
 
 2) We had a small bug in our eventListener function while displaying our questions. It would run smoothly until the quiz came to question three. Upon 
 reaching what should have been questions 3, we would be presented with question 4 and the answer options for both question #3 & #4. While reviewing in 
@@ -77,6 +94,8 @@ nextBtn,addEventListener("click" , () => getQuestion())
  nextBtn,addEventListener("click", getQuestion) 
  ```
  and this removed the issue of nested results. 
+
+ 3) 
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------
@@ -105,3 +124,10 @@ Elena:
 
 
 Jessy:
+I learned a lot from this project, I was able to become a lot more comfortable with working with each component and gaining a better understanding 
+of what role each component plays in the overall scheme. I learned a bit more about JavaScript and it's flexibility and how that can both positively
+and negatively impact the coding experience. My partener was very helpful in filling in the gaps where I didn't feel as confident. Being able to talk through some issues and potential fixes was very helpful to me in verifying my own understanding and seeing another's way of fixing an issue that I may not have thought of. If I had the chance to do this project over, I would change the way I coded, I think slowing down and paying closer attention to how variable are being called and how Thymeleaf interacts/ what type of tags it requires to work. I would also spend less time with certain bugs and pivot sooner, we had a lot of wasted time on small fixes (although we did learn a lot from each of those experiences as well so maybe not?).I really enjoyed working with my partner and the tools that we used to organize ourselves.
+ There were so many features we thought of adding if we had more time:
+quiz categories so we could organize the quizzes into specific categories. 
+adding a bit more beautification properties in the way of a little mroe color/ images.
+I'd like to add a button to the take quizzes to allow users to return to a previously answered question or potentially a read out of all their reponses that is showed in the Show Results page
