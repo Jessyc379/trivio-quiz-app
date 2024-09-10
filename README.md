@@ -72,8 +72,21 @@ quizzes, edit existing ones, and change the "Active Status" of tests as needed!
  <p align="right"><a href="#top">back to top</a></p>
 
 ## <a name="install"></a> Installation
+To run the Trivio Quizlet App:
 
+1. Install MySQL, Java and Maven
 
+2. Clone or fork this repo:
+
+```
+https://github.com/full-stack-devs-learn/niantic-2024-sprint-2-team-7.git
+```
+
+3. Run the `trivio-db.sql` database script located in the `database` folder to create the Trivio database
+
+4. Run `TrivioApplication` 
+
+5. You can now navigate to `localhost:8080/` to access the Trivio Quizlet App.
  
 <p align="right"><a href="#top">back to top</a></p>
 
