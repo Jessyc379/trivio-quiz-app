@@ -25,7 +25,8 @@ public class QuizDao {
                     SELECT quiz_id
                         , quiz_title
                         , is_live
-                    FROM quiz;
+                    FROM quiz
+                    ORDER BY is_live DESC, quiz_title;
                 """;
         var row = jdbcTemplate.queryForRowSet(sql);
         while (row.next()) {
