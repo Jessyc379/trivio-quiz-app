@@ -6,7 +6,7 @@
 * [Project Description](#description)
 * [Tech Stack](#technologies)
 * [Features](#features)
-* [Installation](#install)
+* [How to Run](#running)
 * [Development Process](#development)
 * [Challenges](#challenges)
 * [Retrospective](#retrospective)
@@ -87,7 +87,7 @@ After submitting the last question, the `Next` button disappears, and a message 
 
 <p align="right"><a href="#top">back to top</a></p>
 
-## <a name="install"></a> Installation
+## <a name="running"></a> How to Run
 To run the Trivio Quizlet App:
 
 1. Install MySQL, Java and Maven
