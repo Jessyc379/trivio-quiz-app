@@ -21,12 +21,12 @@
                 <div th:text="${question.questionNumber}"></div>
                 <div th:text="${question.questionText}"></div>
             </div>
-            <div class="d-flex flex-row gap-3 align-items-end">
+            <div class="d-flex flex-row gap-3 align-items-center">
                 <a th:href="@{|/answers?questionId=${question.questionId}|}" class="btn btn-outline-primary">
-                    Question&nbsp;Answers
+                    <i class="fa fa-list"></i>&nbsp;&nbsp;Question&nbsp;Answers
                 </a>
                 <a th:href="@{|/questions/${quiz.quizId}/${question.questionId}/edit|}" class="btn btn-outline-primary">
-                    Edit&nbsp;Question
+                    <i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit&nbsp;Question
                 </a>
             </div>
         </div>
