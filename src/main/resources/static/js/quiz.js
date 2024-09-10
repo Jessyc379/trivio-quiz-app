@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     takeQuizBtn.addEventListener("click", getQuestion);
     nextBtn.addEventListener("click", getQuestion);
-    }
     answersForm.addEventListener('submit', (event) => handleSubmitAnswer(event));
 });
 
