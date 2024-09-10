@@ -171,12 +171,27 @@ I have a tie between this code block
 ```
 
 #### Elena:
+I had a great time working on this project. First of all, I really liked the idea of pair programming. Working together in pairs was incredibly rewarding. We enjoyed sharing our knowledge and supporting each other throughout the project. Another thing I want to mention is our development process planning. We were able to stay focused and organized by planning our tasks and working collaboratively. As a result, we were able to complete most of the core functionalities. It was also very satisfying to see how all the concepts we learned could be combined to create a functional full-stack web application.  
+
+Lessons I learned:  
+- While pair programming can be slower initially, it fosters better understanding and code quality.
+- Switching roles regularly keeps both partners engaged and learning.
+- Trello proved valuable for tracking tasks and visualizing progress.
+- Breaking down requirements into smaller, achievable units is crucial for successful project completion.
+  
+With more time, I would implement:
+- more quiz options to take the quiz, like allowing users to navigate questions, show/not show correct answers, show timer, etc
+- organize quizzes into topics/categories (=add one more table, Categories, to our database schema)
+- add images for both questions and answers (=add one more column for image URL to tables Question and Answer)
+- allow users to create accounts, log in, and log out, and store user scores for each quiz (=add two more tables, User and Score)
+
+
 
 
 #### Jessy:
 I learned a lot from this project, I was able to become a lot more comfortable with working with each component and gaining a better understanding 
 of what role each component plays in the overall scheme. I learned a bit more about JavaScript and it's flexibility and how that can both positively
-and negatively impact the coding experience. My partener was very helpful in filling in the gaps where I didn't feel as confident. Being able to talk through some issues and potential fixes was very helpful to me in verifying my own understanding and seeing another's way of fixing an issue that I may not have thought of. If I had the chance to do this project over, I would change the way I coded slightly, I think slowing down and paying closer attention to how variables are being called and how Thymeleaf interacts/ what type of tags it requires to work. I would also spend less time with certain bugs and pivot sooner, we had a lot of wasted time on small fixes (although we did learn a lot from each of those experiences as well so maybe not?). I really enjoyed working with my partner and the tools that we used to organize ourselves.
+and negatively impact the coding experience. My partener was very helpful in filling in the gaps where I didn't feel as confident. Being able to talk through some issues and potential fixes was very helpful to me in verifying my own understanding and seeing another's way of fixing an issue that I may not have thought of. If I had the chance to do this project over, I would change the way I coded slightly, I think slowing down and paying closer attention to how variables are being called and how Thymeleaf interacts/ what type of tags it requires to work. I would also spend less time with certain bugs and pivot sooner, we had a lot of wasted time on small fixes (although we did learn a lot from each of those experiences as well so maybe not?). I really enjoyed working with my partner and the tools that we used to organize ourselves.  
  There were so many features we thought of adding if we had more time:
 - quiz categories so we could organize the quizzes into specific categories. 
 - adding a bit more beautification properties in the way of a little mroe color/ images.
