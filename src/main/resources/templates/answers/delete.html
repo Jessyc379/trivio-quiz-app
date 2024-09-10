@@ -16,24 +16,26 @@
             You are about to delete the following answer
         </h3>
 
-        <div class="d-flex flex-column gap-3 text-nowrap">
+        <div class=" card d-flex flex-column gap-3 text-nowrap">
+            <table id="delete-answer" class="table mb-1">
+                <tr>
+                    <th>Question</th>
+                    <td class="text-center text-nowrap" th:text="${question.questionText}"></td>
+                </tr>
 
-            <div class="d-flex flex-row gap-5">
-                <div class="left-column text-end">Question</div>
-                <div class="text-nowrap" th:text="${question.questionText}"></div>
-            </div>
+                <tr>
+                    <th>Answer text:</th>
+                    <td th:text="${answer.answerText}"></td>
+                </tr>
 
-            <div class="d-flex flex-row gap-5">
-                <div class="left-column text-end">Answer&nbsp;text</div>
-                <div class="text-nowrap" th:text="${answer.answerText}"></div>
-            </div>
+                <tr>
+                    <th>Correct Answer?</th>
+                    <td th:text="${answer.isCorrect ? 'Correct' : 'Incorrect'}"></td>
+                </tr>
+            </table>
 
-            <div class="d-flex flex-row gap-5 mb-5">
-                <div class="left-column text-end">Is&nbsp;correct?</div>
-                <div th:text="${answer.isCorrect ? 'Correct' : 'Incorrect'}"></div>
-            </div>
 
-            <form method="post" class="d-flex flex-row justify-content-center gap-5">
+            <form method="post" class="d-flex flex-row justify-content-center gap-5 mb-3">
                 <a id="cancel-btn" class="btn btn-outline-primary"
                     th:href="@{|/answers?questionId=${answer.questionId}|}">Cancel</a>
                 <input id="submit-btn" class="btn btn-outline-primary" type="submit" value="Delete Answer">
