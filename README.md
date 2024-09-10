@@ -69,12 +69,21 @@ quizzes, edit existing ones, and change the "Active Status" of tests as needed!
 
 On the `Take Quiz` page a user can see a list of all active quizzes available and choose a quiz to take by clicking the `Take Quiz` button  
 
-<img src="src/main/resources/static/images/quizzes-page.png" width = "800">
+<img src="src/main/resources/static/images/quizzes-page.png" width="800">
 
 The quiz page initially displays the name of the quiz and the total number questions.  
 It also displays the `Take quiz` button that allows a user to begin the quiz
 
-<img src="src/main/resources/static/images/quiz-start.png" width = "800">
+<img src="src/main/resources/static/images/quiz-start.png" width="800">
+
+After clicking the `Take Quiz` button, users can see one question at a time.  
+They can submit their answer by clicking the `Submit` button and immediately receive feedback on whether their choice was correct or incorrect
+
+<img src="src/main/resources/static/images/question-wrong.png" width="800">
+
+After submitting the last question, the `Next` button disappears, and a message indicating that the quiz is complete appears along with a `Show Results` button  
+
+<img src="src/main/resources/static/images/quiz-last-question.png" width="800">
 
 <p align="right"><a href="#top">back to top</a></p>
 
