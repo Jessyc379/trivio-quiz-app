@@ -41,6 +41,10 @@ function getQuestion() {
         quizResultsContainer.classList.add("d-none");
         const quizResults = document.getElementById("quiz-results");
         quizResults.classList.add("d-none");
+        const percentSpan = document.getElementById("percent");
+        percentSpan.classList.remove("text-success");
+        percentSpan.classList.remove("text-warning");
+        percentSpan.classList.remove("text-danger");
     }
 
     currentQuestionNumber++;
