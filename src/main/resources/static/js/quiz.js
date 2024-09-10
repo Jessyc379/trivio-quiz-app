@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     takeQuizBtn.addEventListener("click", getQuestion);
     nextBtn.addEventListener("click", getQuestion);
     answersForm.addEventListener('submit', (event) => handleSubmitAnswer(event));
-
 });
 
 
@@ -42,6 +41,10 @@ function getQuestion() {
         quizResultsContainer.classList.add("d-none");
         const quizResults = document.getElementById("quiz-results");
         quizResults.classList.add("d-none");
+        const percentSpan = document.getElementById("percent");
+        percentSpan.classList.remove("text-success");
+        percentSpan.classList.remove("text-warning");
+        percentSpan.classList.remove("text-danger");
     }
 
     currentQuestionNumber++;
@@ -81,7 +84,6 @@ function createAnswerDiv(answer, parent) {
     const formRow = document.createElement("div");
     formRow.classList.add("form-check");
 
-    // Create the input element
     const input = document.createElement('input');
     input.type = 'radio';
     input.name = 'answerRadio';
@@ -89,13 +91,11 @@ function createAnswerDiv(answer, parent) {
     input.value = answer.answerText;
     input.classList.add("form-check-input");
 
-    // Create the label element
     const label = document.createElement('label');
     label.htmlFor = `answer${answer.answerId}`;
     label.classList.add("form-check-label");
     label.textContent = answer.answerText;
 
-    // Append elements to formRow
     formRow.appendChild(input);
     formRow.appendChild(label);
 
@@ -125,7 +125,6 @@ function handleSubmitAnswer(event) {
         showResults();
     }
 };
-
 
 function getCheckedAnswerValue() {
     const checkedAnswers = document.querySelectorAll(`input[name="answerRadio"]:checked`);
@@ -159,7 +158,7 @@ function displayResults() {
     const resultsBtn = document.getElementById("show-results-btn");
     resultsBtn.classList.add("d-none");
 
-    const results = document.getElementById("quiz-results");
+    const quizResults = document.getElementById("quiz-results");
     const percent = Math.round((userQuizScore /  totalNumberOfQuestions * 10000) / 100);
 
     const scoreSpan = document.getElementById("score");
@@ -177,7 +176,7 @@ function displayResults() {
     else {
         percentSpan.classList.add("text-danger");
     }
-    results.classList.remove("d-none");
+    quizResults.classList.remove("d-none");
 
     resetTakeQuizPage();
 };
