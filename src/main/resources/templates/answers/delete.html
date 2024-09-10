@@ -12,11 +12,11 @@
         <h1>Delete Answer</h1>
 
         <h3>
-            <i class="fa fa-exclamation-circle text-danger p-3"></i>
+            <i class="fa fa-exclamation-circle text-danger p-2"></i>
             You are about to delete the following answer
         </h3>
 
-        <div class=" card d-flex flex-column gap-3 text-nowrap">
+        <div class="card d-flex flex-column gap-3 text-nowrap p-3">
             <table id="delete-answer" class="table mb-1">
                 <tr>
                     <th>Question</th>
@@ -24,18 +24,17 @@
                 </tr>
 
                 <tr>
-                    <th>Answer text:</th>
+                    <th>Answer Text</th>
                     <td th:text="${answer.answerText}"></td>
                 </tr>
 
                 <tr>
-                    <th>Correct Answer?</th>
+                    <th class="pe-3">Correct Answer?</th>
                     <td th:text="${answer.isCorrect ? 'Correct' : 'Incorrect'}"></td>
                 </tr>
             </table>
 
-
-            <form method="post" class="d-flex flex-row justify-content-center gap-5 mb-3">
+            <form method="post" class="d-flex flex-row justify-content-center gap-5">
                 <a id="cancel-btn" class="btn btn-outline-primary"
                     th:href="@{|/answers?questionId=${answer.questionId}|}">Cancel</a>
                 <input id="submit-btn" class="btn btn-outline-primary" type="submit" value="Delete Answer">
