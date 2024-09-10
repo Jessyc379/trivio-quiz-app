@@ -10,7 +10,7 @@
 * [Development Process](#process)
 * [Challenges](#challenges)
 * [Retrospective](#retrospective)
-* [About Us](#aboutus)
+* [About Us](#about-us)
 
 ## <a name="description"></a> Project Description
 
@@ -174,4 +174,17 @@ and negatively impact the coding experience. My partener was very helpful in fil
 - adding a bit more beautification properties in the way of a little mroe color/ images.
 - I'd like to add a button to the take quizzes to allow users to return to a previously answered question or potentially a read out of all their reponses that is showed in the Show Results page (that would require saving results: a current limitation on this project)
 - I would add a login page for both quiz takers and quiz users, ensuring that quizzes aren't corupted with wrong information. Users could then track their progress and have guides on what they need to continue study based on what they missed. 
-- I'd love to see images within the questions themselves. My partner thought of this and I thought it would be a great featuer for users. 
+- I'd love to see images within the questions themselves. My partner thought of this and I thought it would be a great featuer for users.
+
+  
+## <a name="about-team"></a>About the Team
+
+Trivio Quizlet App was created by [Jessy](github.com/Jessyc379) and [Elena](github.com/ElenaByc) as a four-day pair-programming project. 
+
+Thank you for your interest in our project!  
+We would love to connect and hear your feedback!  
+
+Jessy Cesena [linkedin.com/in/jessycesena](linkedin.com/in/jessycesena)  
+Elena Bychenkova [linkedin.com/in/elena-bychenkova](linkedin.com/in/elena-bychenkova)
+
+ <p align="right"><a href="#top">back to top</a></p>
