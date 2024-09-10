@@ -6,7 +6,7 @@
 * [Project Description](#description)
 * [Tech Stack](#technologies)
 * [Features](#features)
-* [Installation](#install)
+* [How to Run](#running)
 * [Development Process](#development)
 * [Challenges](#challenges)
 * [Retrospective](#retrospective)
@@ -19,7 +19,7 @@ to make quiz taking easier for both the quiz creator and quiz taker in one onlin
 to take previously created quizzes and/or create new quizzes for others to interact with. When navigating to our home 
 page you will have the option to navigate to either the "Take Quiz" or "Quiz Management" page depending on your intent.
 
-<center> <img src="src/main/resources/static/images/home-page.png" width="800"> </center>
+<img src="src/main/resources/static/images/home-page.png" width="800">
 
 As you can tell, our webpage is simple, clean, and easy to read, while edging on the side of nostalgia. Think back to the 
 days of chalkboards and rulers, a sunny day where you can feel the chalk dust tickling your nose while your teacher hands 
@@ -31,12 +31,12 @@ their learning journey.
 
 Navigate to our "Take Quiz" page. 
 
-<center> <img src="src/main/resources/static/images/take-quiz.png" width="800"> </center>
+<img src="src/main/resources/static/images/take-quiz.png" width="800">
 
 Here you will see a list of all the active quizzes we currently host in our database! Take as many quizzes as you'd like! 
 Our server is made for YOU! Each question will test your knowledge and give you immediate feedback on how you are performing. 
 
-<center><img src="src/main/resources/static/images/quiz-sample.png" width = "800"></center>
+<img src="src/main/resources/static/images/quiz-sample.png" width = "800">
 
 And will end with you seeing your total score and percentage!
 
@@ -44,7 +44,7 @@ And will end with you seeing your total score and percentage!
 
 Navigate to our "Quiz Management" Page:
 
-<center><img src="src/main/resources/static/images/quiz-management.png" width="800"></center>
+<img src="src/main/resources/static/images/quiz-management.png" width="800">
 
 Here you will have access to all of the quizzes in our database, including inactive quizzes. You can create your own
 quizzes, edit existing ones, and change the "Active Status" of tests as needed!
@@ -67,11 +67,27 @@ quizzes, edit existing ones, and change the "Active Status" of tests as needed!
 
 ## <a name="features"></a> Features
 
+On the `Take Quiz` page a user can see a list of all active quizzes available and choose a quiz to take by clicking the `Take Quiz` button  
 
- 
- <p align="right"><a href="#top">back to top</a></p>
+<img src="src/main/resources/static/images/quizzes-page.png" width="800">
 
-## <a name="install"></a> Installation
+The quiz page initially displays the name of the quiz and the total number questions.  
+It also displays the `Take quiz` button that allows a user to begin the quiz
+
+<img src="src/main/resources/static/images/quiz-start.png" width="800">
+
+After clicking the `Take Quiz` button, users can see one question at a time.  
+They can submit their answer by clicking the `Submit` button and immediately receive feedback on whether their choice was correct or incorrect
+
+<img src="src/main/resources/static/images/question-wrong.png" width="800">
+
+After submitting the last question, the `Next` button disappears, and a message indicating that the quiz is complete appears along with a `Show Results` button  
+
+<img src="src/main/resources/static/images/quiz-last-question.png" width="800">
+
+<p align="right"><a href="#top">back to top</a></p>
+
+## <a name="running"></a> How to Run
 To run the Trivio Quizlet App:
 
 1. Install MySQL, Java and Maven
@@ -97,13 +113,13 @@ Throughout our process, we used a Trello board to track our progress and keep us
 Once we knew what we wanted our website to look like we started coding, starting with the most important aspect first: accessing 
 the database quizzes and allowing users to take them! 
 
-<center><img src="src/main/resources/static/images/trello-design-board.png" width="400"></center>  
+<img src="src/main/resources/static/images/trello-design-board.png" width="400">
 
-<center><img src="src/main/resources/static/images/web-page-design.png" width="400"></center>
+<img src="src/main/resources/static/images/web-page-design.png" width="400">
 
 We created a table chart to help visualize our database tables and their corresponding keys for clear understanding while creating 
 our SQL queries to gather the correct data when necessary
-<center><img src="src/main/resources/static/images/database-design.png" width="800"></center>
+<img src="src/main/resources/static/images/database-design.png" width="800">
  
 <p align="right"><a href="#top">back to top</a></p>
 
