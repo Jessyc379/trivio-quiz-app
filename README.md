@@ -1,24 +1,30 @@
-# Trivio Quizlet App
-Project Stack:
-MySQL
-Java
-BootStrap
-Thymeleaf
-Javascript
+## <a name="top"></a> Trivio Quizlet App
 
-[------------Describe Your Project:------------]:#
+**Trivio Quizlet** is a full-stack web application allowing users to take quizzes and create and manage their quizzes.
 
-Trivio is a easy to use online Quiz taking application. With online school becoming the norm, we wanted to create a way 
-to make quiz taking easier for both the quiz creater and quiz taker in one online platform! Anyone can use this software 
+## Contents
+* [Project Description](#description)
+* [Tech Stack](#technologies)
+* [Features](#features)
+* [Installation](#install)
+* [Development Process](#process)
+* [Challenges](#challenges)
+* [Retrospective](#retrospective)
+* [About Us](#aboutus)
+
+## <a name="description"></a> Project Description
+
+Trivio is an easy to use online Quiz taking application. With online school becoming the norm, we wanted to create a way 
+to make quiz taking easier for both the quiz creator and quiz taker in one online platform! Anyone can use this software 
 to take previously created quizzes and/or create new quizzes for others to interact with. When navigating to our home 
 page you will have the option to navigate to either the "Take Quiz" or "Quiz Management" page depending on your intent.
 
 <center> <img src="src/main/resources/static/images/home-page.png" width="800"> </center>
 
-As you can tell, our webpage is simple, clean and easy to read, while edging on the side of nostaglia. Think back to the 
+As you can tell, our webpage is simple, clean, and easy to read, while edging on the side of nostalgia. Think back to the 
 days of chalkboards and rulers, a sunny day where you can feel the chalk dust tickling your nose while your teacher hands 
 out today's pop quiz. It was a much simpler time that allowed us to focus on things that were most important: like learning! 
-Trivio aims to remove the noise and distraction, and be the tool needed to help our friends be the best they can be in 
+Trivio aims to remove the noise and distraction and be the tool needed to help our friends be the best they can be in 
 their learning journey. 
 
 ***For Quiz Takers:***
@@ -40,12 +46,26 @@ Navigate to our "Quiz Management" Page:
 
 <center><img src="src/main/resources/static/images/quiz-management.png" width="800"></center>
 
-Here you will have access to all of the quizzes in our database, including inactive quizzes. You are able to create your own
-quizzes, edit exisiting ones and change the "Active Status" of tests as needed!
+Here you will have access to all of the quizzes in our database, including inactive quizzes. You can create your own
+quizzes, edit existing ones, and change the "Active Status" of tests as needed!
 
 <center><img src="src/main/resources/static/images/create-quiz.png" width="800"></center>
 
--------------------------------------------------------------------------------------------------------------------------------------------
+<p align="right"><a href="#top">back to top</a></p>
+
+## <a name="technologies"></a>Tech Stack
+- **Backend**
+  - Java
+  - Spring Boot
+  - MySQL
+- **Frontend**
+  - Thymeleaf 
+  - JavaScript
+  - Bootstrap
+  - HTML5
+  - CSS3
+ 
+  <p align="right"><a href="#top">back to top</a></p>
 
 [------------Describe Your Development Process:------------]:#
 **Design Process**
