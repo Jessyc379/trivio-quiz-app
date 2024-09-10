@@ -1,4 +1,10 @@
 # Trivio Quizlet App
+Project Stack:
+MySQL
+Java
+BootStrap
+Thymeleaf
+Javascript
 
 [------------Describe Your Project:------------]:#
 
@@ -82,18 +88,6 @@ and realized that we needed to have BindingResult following directly after the @
 ```
 
 
-2) We had a small bug in our eventListener function while displaying our questions. It would run smoothly until the quiz came to question three. Upon 
-reaching what should have been questions 3, we would be presented with question 4 and the answer options for both question #3 & #4. While reviewing in 
-dev tools, I realized that it was pulling up question 3, displaying and then immediately replacing it with the next question. While reviewing our code, 
-Elena relized that it could be the way that we wrote our EventListener:
-```
-nextBtn,addEventListener("click" , () => getQuestion())
-```
- and changed it to:
- ```
- nextBtn,addEventListener("click", getQuestion) 
- ```
- and this removed the issue of nested results. 
 
  3) 
 
@@ -111,9 +105,37 @@ nextBtn,addEventListener("click" , () => getQuestion())
 
 
  Jessy Code Block:
+I have a tie between this code block 
+```
+    @GetMapping("/api/quizzes/{quizId}/question/{questionNumber}")
+    public Question getQuestionByQuestionNumber(@PathVariable int quizId, @PathVariable int questionNumber) {
+        Question question = questionDao.getQuestion(quizId, questionNumber);
+        ArrayList<Answer> answers = answerDao.getAnswersByQuestionId(question.getQuestionId());
+        question.setAnswers(answers);
+        return question;
+    }
+```
+ and this code block:
+```
+ <div class=" card d-flex flex-column gap-3 text-nowrap">
+            <table id="delete-answer" class="table mb-1">
+                <tr>
+                    <th>Question</th>
+                    <td class="text-center text-nowrap" th:text="${question.questionText}"></td>
+                </tr>
 
+                <tr>
+                    <th>Answer text:</th>
+                    <td th:text="${answer.answerText}"></td>
+                </tr>
 
+                <tr>
+                    <th>Correct Answer?</th>
+                    <td th:text="${answer.isCorrect ? 'Correct' : 'Incorrect'}"></td>
+                </tr>
+            </table>
 
+```
 
 
 
