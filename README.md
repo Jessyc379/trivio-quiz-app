@@ -129,7 +129,7 @@ We had a few bugs that popped up throughout this project:
 
 1. Server-side validation was problematic. We were unable to receive appropriate errors when fields were left empty in our edit/add forms. We tried 
 the use of both `@NotEmpty` and `@NotBlank`, but neither seemed to change the issue. 
-We ended up realizing that we were using the wrong order of parameters within our controllers
+We ended up realizing that we were using the wrong order of parameters within our controllers.
 Originally we wrote
 ```
 @PostMapping("/questions/{quizId}/add")
@@ -149,6 +149,8 @@ and realized that we needed to have BindingResult following directly after the @
                               BindingResult result,
                               @PathVariable int quizId)
 ```
+
+2. During the development portion of the `take-quiz.html` we found issues in accessing all the answers pertaining to the current question. We originally tried using fragments and multiple fetch statements in our JavaScript, but after a few glitches and improper fetching, we decided to pivot away from using a fragment and instead utilized an API rest controller to @GetMap all of the information at once. This greatly decreased the clutter in our code, and cleared up the performance issues we were having. 
 
 <p align="right"><a href="#top">back to top</a></p>
 
@@ -199,6 +201,7 @@ I have a tie between this code block
 
 ```
 
+
 #### Elena:
 I had a great time working on this project. First of all, I really liked the idea of pair programming. Working together in pairs was incredibly rewarding. We enjoyed sharing our knowledge and supporting each other throughout the project. Another thing I want to mention is our development process planning. We were able to stay focused and organized by planning our tasks and working collaboratively. As a result, we were able to complete most of the core functionalities. It was also very satisfying to see how all the concepts we learned could be combined to create a functional full-stack web application.  
 
@@ -218,14 +221,15 @@ With more time, I would implement:
 
 
 #### Jessy:
-I learned a lot from this project, I was able to become a lot more comfortable with working with each component and gaining a better understanding 
-of what role each component plays in the overall scheme. I learned a bit more about JavaScript and it's flexibility and how that can both positively
-and negatively impact the coding experience. My partener was very helpful in filling in the gaps where I didn't feel as confident. Being able to talk through some issues and potential fixes was very helpful to me in verifying my own understanding and seeing another's way of fixing an issue that I may not have thought of. If I had the chance to do this project over, I would change the way I coded slightly, I think slowing down and paying closer attention to how variables are being called and how Thymeleaf interacts/ what type of tags it requires to work. I would also spend less time with certain bugs and pivot sooner, we had a lot of wasted time on small fixes (although we did learn a lot from each of those experiences as well so maybe not?). I really enjoyed working with my partner and the tools that we used to organize ourselves.  
+I learned a lot from this project and enjoyed it from beginning to end. Working with a different partner in the project allowed me to see how other programmers behave with their coding skills compared to myself and how my other partner compelte tasks.  I was able to become a lot more comfortable with working with each component and gaining a better understanding of what role each component plays in the overall scheme of our project. I learned a bit more about JavaScript and it's flexibility and how that can both positively and negatively impact the coding experience. My partner was very helpful in filling in the gaps where I didn't feel as confiden and I hope that I was able to do the same for her. Being able to talk through some issues and potential fixes was very helpful to me in verifying my own understanding and seeing another's way of fixing an issue that I may not have thought of.
+I was very happy with how we decided to breakdown the prject goals into smaller and more manageable bits. This allowed us to focus on one task at a time rather than be overwhelmed and unsure on where to begin. I really enjoyed working with my partner and the tools that we used to organize ourselves. 
+
+ If I had the chance to do this project over, I would change the way I coded slightly, I think slowing down and paying closer attention to how variables are being called and how Thymeleaf interacts/ what type of tags it requires to work. I would also spend less time with certain bugs and pivot sooner, we had a lot of wasted time on small fixes (although we did learn a lot from each of those experiences as well so maybe not?).  
  There were so many features we thought of adding if we had more time:
 - quiz categories so we could organize the quizzes into specific categories. 
 - adding a bit more beautification properties in the way of a little mroe color/ images.
 - I'd like to add a button to the take quizzes to allow users to return to a previously answered question or potentially a read out of all their reponses that is showed in the Show Results page (that would require saving results: a current limitation on this project)
-- I would add a login page for both quiz takers and quiz users, ensuring that quizzes aren't corupted with wrong information. Users could then track their progress and have guides on what they need to continue study based on what they missed. 
+- I would add a login page for both quiz takers and quiz users, ensuring that quizzes aren't corupted with wrong information. Users could then track their progress and have guides on what they need to continue study based on what they missed. This would also allow users to rank themselves amongst other quiz takers, tract their progress overall and earn badges to help encourage continuing use.
 - I'd love to see images within the questions themselves. My partner thought of this and I thought it would be a great feature for users.
 
 <p align="right"><a href="#top">back to top</a></p>
