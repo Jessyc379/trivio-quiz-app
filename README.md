@@ -85,6 +85,33 @@ After submitting the last question, the `Next` button disappears, and a message 
 
 <img src="src/main/resources/static/images/quiz-last-question.png" width="800">
 
+Upon clicking `Show Results`, the user's quiz result is displayed, including the number of correct answers and a percentage.  
+The percentage is color-coded for visual clarity: scores 80% and above are green, 60% to 79% are orange, and below 60% are red.
+
+<img src="src/main/resources/static/images/quiz-results.png" width="600">
+
+The Quiz Management page displays all quizzes (active and inactive).  
+From this page, a user can click the button `Create New Quiz` to create a new quiz.  
+The quiz management page also allows users to edit a quiz by clicking on the quiz's `Edit Quiz` button
+
+<img src="src/main/resources/static/images/quiz-management-page.png" width="800">
+
+By clicking the quiz's `Quiz Questions` button, users can get a list of the quiz questions.  
+Users can add new questions or edit current questions from this list.
+
+<img src="src/main/resources/static/images/questions-page.png" width="800">
+
+The question's `Question Answers` button leads the user to a list of all possible answers associated with that question.  
+On this page, the user can add a new answer, edit an existing answer, and delete an answer from the list
+
+<img src="src/main/resources/static/images/answers-page.png" width="800">
+
+Upon clicking the 'Delete Answer' button, users will be redirected to a confirmation page displaying the answer details.  
+From there, they can choose to either confirm or cancel the deletion.
+
+<img src="src/main/resources/static/images/delete-answer.png" width="500">
+
+
 <p align="right"><a href="#top">back to top</a></p>
 
 ## <a name="running"></a> How to Run
