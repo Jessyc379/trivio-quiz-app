@@ -150,7 +150,21 @@ and realized that we needed to have BindingResult following directly after the @
                               @PathVariable int quizId)
 ```
 
-2. During the development portion of the `take-quiz.html` we found issues in accessing all the answers pertaining to the current question. We originally tried using fragments and multiple fetch statements in our JavaScript, but after a few glitches and improper fetching, we decided to pivot away from using a fragment and instead utilized an API rest controller to @GetMap all of the information at once. This greatly decreased the clutter in our code, and cleared up the performance issues we were having. 
+2. During the development portion of the `take-quiz.html` we found issues accessing all the answers pertaining to the current question. We originally tried using fragments and multiple fetch statements in our JavaScript, but after a few glitches and improper fetching, we decided to pivot away from using a fragment and instead utilized an API rest controller to @GetMap all of the information at once. This greatly decreased the clutter in our code and cleared up the performance issues we were having.
+
+3. Another challenge we encountered was related to Thymeleaf form binding for data submission. Our edit quiz form had only two fields: `quizTitle` and `isLive`. While data binding for the `quizTitle` text field worked as expected, we faced difficulties setting the boolean `isLive` attribute to true. We were using the following form binding:
+```
+<form id="edit-quiz" method="post" th:object="${quiz}" ...
+
+    <input class="form-check-input" type="checkbox" id="isLive" name="isLive" th:field="*{isLive}">
+
+</form>
+```
+After some debugging and research, we discovered that Thymeleaf was not functioning correctly with the setter and getter methods we had defined for the boolean attribute in our `Quiz` class.
+
+Initially, we had a getter named `isLive` and a setter named `setLive`. By renaming the getter to `getIsLive` and the setter to `setIsLive`, we were finally able to successfully set the boolean attribute of the Quiz object.
+
+Later, we learned from another team (Team 2) that there was an alternative solution to this problem: instead of using `*{isLive}`, we could have used `*{live}`. This approach would have eliminated the need to rename the setter and getter methods.
 
 <p align="right"><a href="#top">back to top</a></p>
 
