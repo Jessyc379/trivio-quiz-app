@@ -21,7 +21,7 @@ public class QuestionApiController {
     @Autowired
     private AnswerDao answerDao;
 
-    @GetMapping("/api/quizzes/{quizId}/question/{questionNumber}")
+    @GetMapping(path = "/api/quizzes/{quizId}/question/{questionNumber}")
     public Question getQuestionByQuestionNumber(@PathVariable int quizId, @PathVariable int questionNumber) {
         Question question = questionDao.getQuestion(quizId, questionNumber);
         ArrayList<Answer> answers = answerDao.getAnswersByQuestionId(question.getQuestionId());

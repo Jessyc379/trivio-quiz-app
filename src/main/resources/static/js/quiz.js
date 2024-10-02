@@ -64,7 +64,7 @@ function getQuestion() {
     submitBtn.classList.remove("d-none");
 
     const questionUrl = `/api/quizzes/${quizId}/question/${currentQuestionNumber}`;
-
+// todo: fetch demonstration
     fetch(questionUrl).then(response => {
         if (response.status === 200) {
             return response.json();
